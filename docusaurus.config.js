@@ -5,7 +5,7 @@ module.exports = {
   tagline: 'Wiki',
   url: 'https://sxq8848.github.io',
   baseUrl: '/',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/DW_ALBUM_04.png',
   organizationName: 'SXQ8848',
   projectName: 'SXQ8848.github.io',
   onBrokenLinks: 'warn',
