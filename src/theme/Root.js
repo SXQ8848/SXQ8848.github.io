@@ -86,6 +86,8 @@ function CursorEffect() {
 const MODES = ['loop', 'single', 'random'];
 const MODE_ICONS = { loop: '🔁', single: '🔂', random: '🔀' };
 const MODE_LABELS = { loop: '列表循环', single: '单曲循环', random: '随机播放' };
+const PLAYER_W = 220;
+const MINI_SIZE = 48;
 
 // ⬇️ 在这里填写你的歌单、封面和歌词
 const PLAYLIST = [
@@ -199,9 +201,9 @@ const PLAYLIST = [
 ];
 
 function MusicPlayer() {
-  const audioRef   = useRef(null);
-  const wrapRef    = useRef(null);
-  const dragRef    = useRef({ dragging: false, startX: 0, startY: 0, origX: 0, origY: 0 });
+  const audioRef = useRef(null);
+  const wrapRef  = useRef(null);
+  const dragRef  = useRef({ dragging: false, startX: 0, startY: 0, origX: 0, origY: 0 });
 
   const [playing, setPlaying]     = useState(false);
   const [volume, setVolume]       = useState(0.6);
@@ -209,35 +211,36 @@ function MusicPlayer() {
   const [modeIdx, setModeIdx]     = useState(0);
   const [mini, setMini]           = useState(false);
   const [progress, setProgress]   = useState(0);
-  const [duration, setDuration]   = useState(0);
-  const [currentTime, setCurrTime]= useState(0);
+  const [durSec, setDurSec]       = useState(0);
+  const [currSec, setCurrSec]     = useState(0);
   const [lyricIdx, setLyricIdx]   = useState(0);
   const [showLyric, setShowLyric] = useState(true);
-  const [pos, setPos]             = useState({ x: 24, y: null, fromBottom: 24 });
+  const [playerLeft, setPlayerLeft] = useState(24); // 播放器当前 left px
 
   const song = PLAYLIST[current];
   const mode = MODES[modeIdx];
 
-  // ---- 拖拽逻辑 ----
+  // 时间格式化（防 NaN / Infinity）
+  const fmt = (s) => {
+    if (!s || !isFinite(s) || isNaN(s)) return '0:00';
+    return `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+  };
+
+  // ---- 拖拽 ----
   const onDragStart = useCallback((e) => {
-    if (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT' || e.target.tagName === 'IMG') return;
+    if (['BUTTON', 'INPUT', 'IMG'].includes(e.target.tagName)) return;
     e.preventDefault();
     const wrap = wrapRef.current;
     const rect = wrap.getBoundingClientRect();
-    dragRef.current = {
-      dragging: true,
-      startX: e.clientX, startY: e.clientY,
-      origX: rect.left, origY: rect.top,
-    };
+    dragRef.current = { dragging: true, startX: e.clientX, startY: e.clientY, origX: rect.left, origY: rect.top };
     const onMove = (ev) => {
       if (!dragRef.current.dragging) return;
-      const dx = ev.clientX - dragRef.current.startX;
-      const dy = ev.clientY - dragRef.current.startY;
-      const newX = Math.max(0, Math.min(window.innerWidth  - rect.width,  dragRef.current.origX + dx));
-      const newY = Math.max(0, Math.min(window.innerHeight - rect.height, dragRef.current.origY + dy));
+      const newX = Math.max(0, Math.min(window.innerWidth  - rect.width,  dragRef.current.origX + ev.clientX - dragRef.current.startX));
+      const newY = Math.max(0, Math.min(window.innerHeight - rect.height, dragRef.current.origY + ev.clientY - dragRef.current.startY));
       wrap.style.left   = newX + 'px';
       wrap.style.top    = newY + 'px';
       wrap.style.bottom = 'auto';
+      setPlayerLeft(newX);
     };
     const onUp = () => {
       dragRef.current.dragging = false;
@@ -250,7 +253,7 @@ function MusicPlayer() {
 
   // ---- 播放控制 ----
   const playSong = useCallback((idx) => {
-    setCurrent(idx); setLyricIdx(0); setProgress(0);
+    setCurrent(idx); setLyricIdx(0); setProgress(0); setCurrSec(0);
     setTimeout(() => { audioRef.current?.play().catch(() => {}); setPlaying(true); }, 50);
   }, []);
 
@@ -260,12 +263,10 @@ function MusicPlayer() {
   };
 
   const prevSong = () => playSong((current - 1 + PLAYLIST.length) % PLAYLIST.length);
-
   const nextSong = useCallback(() => {
-    let idx;
-    if (mode === 'random') idx = Math.floor(Math.random() * PLAYLIST.length);
-    else if (mode === 'single') idx = current;
-    else idx = (current + 1) % PLAYLIST.length;
+    const idx = mode === 'random' ? Math.floor(Math.random() * PLAYLIST.length)
+              : mode === 'single' ? current
+              : (current + 1) % PLAYLIST.length;
     playSong(idx);
   }, [mode, current, playSong]);
 
@@ -274,18 +275,26 @@ function MusicPlayer() {
     const audio = audioRef.current;
     if (!audio) return;
     const onTime = () => {
-      const t = audio.currentTime, d = audio.duration || 0;
-      setCurrTime(t); setDuration(d);
-      setProgress(d ? (t / d) * 100 : 0);
-      const lyrics = song.lyrics || [];
+      const t = audio.currentTime || 0;
+      const d = isFinite(audio.duration) ? audio.duration : 0;
+      setCurrSec(t);
+      setDurSec(d);
+      setProgress(d > 0 ? (t / d) * 100 : 0);
+      const lyr = song.lyrics || [];
       let li = 0;
-      for (let i = 0; i < lyrics.length; i++) { if (t >= lyrics[i].time) li = i; }
+      for (let i = 0; i < lyr.length; i++) { if (t >= lyr[i].time) li = i; }
       setLyricIdx(li);
     };
+    const onMeta = () => { if (isFinite(audio.duration)) setDurSec(audio.duration); };
     const onEnded = () => nextSong();
     audio.addEventListener('timeupdate', onTime);
+    audio.addEventListener('loadedmetadata', onMeta);
     audio.addEventListener('ended', onEnded);
-    return () => { audio.removeEventListener('timeupdate', onTime); audio.removeEventListener('ended', onEnded); };
+    return () => {
+      audio.removeEventListener('timeupdate', onTime);
+      audio.removeEventListener('loadedmetadata', onMeta);
+      audio.removeEventListener('ended', onEnded);
+    };
   }, [song, nextSong]);
 
   useEffect(() => { if (audioRef.current) audioRef.current.volume = volume; }, [volume]);
@@ -293,161 +302,148 @@ function MusicPlayer() {
   const seekTo = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const t = ((e.clientX - rect.left) / rect.width) * (audioRef.current?.duration || 0);
-    if (audioRef.current) audioRef.current.currentTime = t;
+    if (audioRef.current && isFinite(t)) audioRef.current.currentTime = t;
   };
-
-  const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
   const currentLyric = song.lyrics?.[lyricIdx]?.text || '';
-
-  // ---- 封面样式 ----
-  const coverStyle = {
-    width: mini ? '52px' : '60px',
-    height: mini ? '52px' : '60px',
-    flexShrink: 0, borderRadius: '50%', overflow: 'hidden',
-    border: '2px solid var(--ifm-color-primary, #7c6ef5)',
-    background: 'rgba(124,110,245,0.15)',
-    display: 'flex', alignItems: 'center', justifyContent: 'center',
-    animation: playing ? 'coverSpin 8s linear infinite' : 'none',
-    boxShadow: playing ? '0 0 14px rgba(124,110,245,0.6)' : 'none',
-    transition: 'box-shadow 0.3s, width 0.3s, height 0.3s',
-    cursor: 'pointer',
-  };
+  // 歌词 left = 播放器左边缘 + 播放器实际宽度 + 16px 间距
+  const lyricLeft = playerLeft + (mini ? MINI_SIZE : PLAYER_W) + 16;
 
   const btn = {
     background: 'none', border: 'none', cursor: 'pointer',
-    color: 'var(--ifm-font-color-base, #fff)', fontSize: '16px',
-    padding: '4px 8px', borderRadius: '8px',
+    color: 'var(--ifm-font-color-base,#fff)', fontSize: '13px',
+    padding: '3px 5px', borderRadius: '6px',
     display: 'flex', alignItems: 'center', justifyContent: 'center',
+  };
+
+  const coverBase = {
+    borderRadius: '50%', overflow: 'hidden', flexShrink: 0,
+    border: '2px solid var(--ifm-color-primary,#7c6ef5)',
+    background: 'rgba(124,110,245,0.15)',
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    animation: playing ? 'coverSpin 8s linear infinite' : 'none',
+    boxShadow: playing ? '0 0 12px rgba(124,110,245,0.55)' : 'none',
+    transition: 'box-shadow 0.3s',
   };
 
   return (
     <>
       <style>{`
-        @keyframes coverSpin {
-          from { transform: rotate(0deg); }
-          to   { transform: rotate(360deg); }
-        }
-        @keyframes lyricFadeIn {
-          from { opacity: 0; transform: translateY(6px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes coverSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        @keyframes lyricIn   { from{opacity:0;transform:translateX(8px)} to{opacity:1;transform:translateX(0)} }
       `}</style>
 
-      {/* 浮动歌词 —— 页面垂直居中右侧 */}
+      {/* 歌词：紧贴播放器右侧，屏幕垂直居中 */}
       {showLyric && playing && currentLyric && (
         <div key={currentLyric} style={{
-          position: 'fixed', right: '32px',
-          top: '50%', transform: 'translateY(-50%)',
-          zIndex: 9998, pointerEvents: 'none',
-          maxWidth: '280px', textAlign: 'right',
-          animation: 'lyricFadeIn 0.4s ease',
+          position: 'fixed',
+          left: lyricLeft + 'px',
+          top: '50vh',
+          transform: 'translateY(-50%)',
+          zIndex: 9998,
+          pointerEvents: 'none',
+          animation: 'lyricIn 0.35s ease',
+          maxWidth: '320px',
         }}>
-          <div style={{
-            fontSize: '18px', fontWeight: 500, lineHeight: 1.7,
-            color: 'var(--ifm-color-primary, #a89fff)',
-            textShadow: '0 0 20px rgba(124,110,245,0.8), 0 2px 8px rgba(0,0,0,0.5)',
-            letterSpacing: '0.04em',
+          <span style={{
+            fontSize: '16px', fontWeight: 500, lineHeight: 1.8,
+            color: 'var(--ifm-color-primary,#b8adff)',
+            textShadow: '0 0 18px rgba(124,110,245,0.7), 0 2px 6px rgba(0,0,0,0.4)',
+            letterSpacing: '0.03em', whiteSpace: 'nowrap',
           }}>
             {currentLyric}
-          </div>
+          </span>
         </div>
       )}
 
-      {/* 播放器主体 */}
+      {/* 播放器 */}
       <div ref={wrapRef} onMouseDown={onDragStart} style={{
         position: 'fixed', bottom: '24px', left: '24px', zIndex: 9999,
-        fontFamily: 'inherit', userSelect: 'none',
-        cursor: 'grab',
+        userSelect: 'none', cursor: 'grab', fontFamily: 'inherit',
       }}>
-        <div style={{
-          background: 'var(--ifm-background-surface-color, rgba(20,20,35,0.92))',
-          backdropFilter: 'blur(16px)',
-          border: '1px solid var(--ifm-color-primary, #7c6ef5)',
-          borderRadius: mini ? '50%' : '16px',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.25)',
-          overflow: 'hidden',
-          width: mini ? '56px' : '280px',
-          transition: 'width 0.35s cubic-bezier(.4,0,.2,1), border-radius 0.35s',
-          display: 'flex', flexDirection: 'column',
-        }}>
-          {/* 迷你模式：只显示旋转封面 */}
-          {mini ? (
-            <div style={coverStyle} onClick={() => setMini(false)} title="展开播放器">
-              {song.cover
-                ? <img src={song.cover} alt="cover" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                : <span style={{ fontSize: '22px' }}>♪</span>
-              }
-            </div>
-          ) : (
-            <div style={{ padding: '14px 14px 12px' }}>
-              <audio ref={audioRef} src={song.src} />
+        <audio ref={audioRef} src={song.src} />
 
-              {/* 封面 + 歌曲信息 + 收起按钮 */}
-              <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '10px' }}>
-                <div style={coverStyle}>
-                  {song.cover
-                    ? <img src={song.cover} alt="cover" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                    : <span style={{ fontSize: '26px' }}>♪</span>
-                  }
+        {/* 迷你：旋转封面 */}
+        {mini ? (
+          <div
+            style={{ ...coverBase, width: MINI_SIZE, height: MINI_SIZE, cursor: 'pointer' }}
+            onClick={() => setMini(false)}
+            title="展开播放器"
+          >
+            {song.cover
+              ? <img src={song.cover} alt="cover" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              : <span style={{ fontSize: '20px' }}>♪</span>}
+          </div>
+        ) : (
+          /* 展开 */
+          <div style={{
+            background: 'var(--ifm-background-surface-color,rgba(18,18,30,0.93))',
+            backdropFilter: 'blur(16px)',
+            border: '1px solid var(--ifm-color-primary,#7c6ef5)',
+            borderRadius: '14px',
+            boxShadow: '0 6px 24px rgba(0,0,0,0.3)',
+            width: PLAYER_W + 'px',
+            padding: '10px 12px 8px',
+          }}>
+            {/* 封面 + 歌名 + 收起 */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+              <div style={{ ...coverBase, width: 42, height: 42 }}>
+                {song.cover
+                  ? <img src={song.cover} alt="cover" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  : <span style={{ fontSize: '18px' }}>♪</span>}
+              </div>
+              <div style={{ flex: 1, overflow: 'hidden' }}>
+                <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ifm-font-color-base,#fff)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {song.title}
                 </div>
-                <div style={{ flex: 1, overflow: 'hidden' }}>
-                  <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ifm-font-color-base, #fff)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {song.title}
-                  </div>
-                  <div style={{ fontSize: '12px', marginTop: '2px', color: 'rgba(180,170,255,0.75)' }}>
-                    {song.artist}
-                  </div>
+                <div style={{ fontSize: '11px', color: 'rgba(180,170,255,0.7)', marginTop: '1px' }}>
+                  {song.artist}
                 </div>
-                {/* 收起按钮 */}
-                <button style={{ ...btn, fontSize: '18px', opacity: 0.6 }} onClick={() => setMini(true)} title="收起">—</button>
               </div>
-
-              {/* 进度条 */}
-              <div onClick={seekTo} style={{ height: '4px', background: 'rgba(255,255,255,0.1)', borderRadius: '2px', cursor: 'pointer', margin: '4px 0' }}>
-                <div style={{ height: '100%', borderRadius: '2px', background: 'var(--ifm-color-primary, #7c6ef5)', width: `${progress}%`, transition: 'width 0.2s linear' }} />
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'rgba(180,170,255,0.6)', margin: '4px 0 10px' }}>
-                <span>{fmt(currentTime)}</span>
-                <span>{fmt(duration)}</span>
-              </div>
-
-              {/* 控制栏 */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                {/* 模式：无底色 */}
-                <button style={btn} onClick={() => setModeIdx(i => (i + 1) % MODES.length)} title={MODE_LABELS[mode]}>
-                  {MODE_ICONS[mode]}
-                </button>
-                <button style={btn} onClick={prevSong}>⏮</button>
-                {/* 播放按钮保留圆形底色 */}
-                <button onClick={toggle} style={{
-                  background: 'var(--ifm-color-primary, #7c6ef5)',
-                  borderRadius: '50%', width: '36px', height: '36px',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  border: 'none', cursor: 'pointer', fontSize: '16px', color: '#fff', flexShrink: 0,
-                }}>
-                  {playing ? '⏸' : '▶'}
-                </button>
-                <button style={btn} onClick={nextSong}>⏭</button>
-                {/* 歌词开关：无底色 */}
-                <button style={{ ...btn, opacity: showLyric ? 1 : 0.35 }} onClick={() => setShowLyric(s => !s)} title="歌词开关">
-                  词
-                </button>
-              </div>
-
-              {/* 音量 */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '10px', paddingTop: '8px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                <span style={{ fontSize: '13px', color: 'rgba(180,170,255,0.6)' }}>
-                  {volume === 0 ? '🔇' : volume < 0.5 ? '🔉' : '🔊'}
-                </span>
-                <input type="range" min="0" max="1" step="0.02" value={volume}
-                  style={{ flex: 1, accentColor: 'var(--ifm-color-primary, #7c6ef5)', height: '3px' }}
-                  onChange={e => setVolume(+e.target.value)}
-                />
-              </div>
+              <button style={{ ...btn, fontSize: '15px', opacity: 0.5 }} onClick={() => setMini(true)} title="收起">—</button>
             </div>
-          )}
-        </div>
+
+            {/* 进度条 */}
+            <div onClick={seekTo} style={{ height: '3px', background: 'rgba(255,255,255,0.1)', borderRadius: '2px', cursor: 'pointer', margin: '4px 0 2px' }}>
+              <div style={{ height: '100%', borderRadius: '2px', background: 'var(--ifm-color-primary,#7c6ef5)', width: `${progress}%`, transition: 'width 0.2s linear' }} />
+            </div>
+
+            {/* 时间 */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', color: 'rgba(180,170,255,0.55)', margin: '2px 0 8px' }}>
+              <span>{fmt(currSec)}</span>
+              <span>{fmt(durSec)}</span>
+            </div>
+
+            {/* 控制栏 */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '6px' }}>
+              <button style={btn} onClick={() => setModeIdx(i => (i + 1) % MODES.length)} title={MODE_LABELS[mode]}>
+                {MODE_ICONS[mode]}
+              </button>
+              <button style={btn} onClick={prevSong}>⏮</button>
+              <button onClick={toggle} style={{
+                background: 'var(--ifm-color-primary,#7c6ef5)',
+                borderRadius: '50%', width: '28px', height: '28px',
+                border: 'none', cursor: 'pointer', fontSize: '12px',
+                color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+              }}>
+                {playing ? '⏸' : '▶'}
+              </button>
+              <button style={btn} onClick={nextSong}>⏭</button>
+              <button style={{ ...btn, opacity: showLyric ? 1 : 0.3 }} onClick={() => setShowLyric(s => !s)} title="歌词">词</button>
+            </div>
+
+            {/* 音量 */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', paddingTop: '6px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+              <span style={{ fontSize: '11px', color: 'rgba(180,170,255,0.55)' }}>
+                {volume === 0 ? '🔇' : volume < 0.5 ? '🔉' : '🔊'}
+              </span>
+              <input type="range" min="0" max="1" step="0.02" value={volume}
+                style={{ flex: 1, accentColor: 'var(--ifm-color-primary,#7c6ef5)', height: '2px' }}
+                onChange={e => setVolume(+e.target.value)}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
