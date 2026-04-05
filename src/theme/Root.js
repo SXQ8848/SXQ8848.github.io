@@ -90,10 +90,10 @@ const MODE_LABELS = { loop: '列表循环', single: '单曲循环', random: '随
 // ⬇️ 在这里填写你的歌单、封面和歌词
 const PLAYLIST = [
   {
-     title: '枫',
+    title: '枫',
     artist: '周杰伦',
     src: '/music/feng.mp3',
-    cover: '/music/cover_feng.jpg',   // 封面图片，放在 static/music/ 下
+    cover: '/music/cover_feng.jpg',
     lyrics: [
       { time: 18.96,  text: '乌云在我们心里搁下一块阴影' },
       { time: 26.02,  text: '我聆听沉寂已久的心情' },
@@ -139,7 +139,7 @@ const PLAYLIST = [
     ],
   },
   {
-    title: '游园会',
+    title: '园游会',
     artist: '周杰伦',
     src: '/music/youyuanhui.mp3',
     cover: '/music/cover_youyuanhui.jpg',
@@ -199,26 +199,58 @@ const PLAYLIST = [
 ];
 
 function MusicPlayer() {
-  const audioRef = useRef(null);
-  const [playing, setPlaying]   = useState(false);
-  const [volume, setVolume]     = useState(0.6);
-  const [current, setCurrent]   = useState(0);
-  const [modeIdx, setModeIdx]   = useState(0);   // 0=loop 1=single 2=random
-  const [mini, setMini]         = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [lyricIdx, setLyricIdx] = useState(0);
+  const audioRef   = useRef(null);
+  const wrapRef    = useRef(null);
+  const dragRef    = useRef({ dragging: false, startX: 0, startY: 0, origX: 0, origY: 0 });
+
+  const [playing, setPlaying]     = useState(false);
+  const [volume, setVolume]       = useState(0.6);
+  const [current, setCurrent]     = useState(0);
+  const [modeIdx, setModeIdx]     = useState(0);
+  const [mini, setMini]           = useState(false);
+  const [progress, setProgress]   = useState(0);
+  const [duration, setDuration]   = useState(0);
+  const [currentTime, setCurrTime]= useState(0);
+  const [lyricIdx, setLyricIdx]   = useState(0);
   const [showLyric, setShowLyric] = useState(true);
+  const [pos, setPos]             = useState({ x: 24, y: null, fromBottom: 24 });
 
   const song = PLAYLIST[current];
   const mode = MODES[modeIdx];
 
-  // 播放指定曲目
+  // ---- 拖拽逻辑 ----
+  const onDragStart = useCallback((e) => {
+    if (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT' || e.target.tagName === 'IMG') return;
+    e.preventDefault();
+    const wrap = wrapRef.current;
+    const rect = wrap.getBoundingClientRect();
+    dragRef.current = {
+      dragging: true,
+      startX: e.clientX, startY: e.clientY,
+      origX: rect.left, origY: rect.top,
+    };
+    const onMove = (ev) => {
+      if (!dragRef.current.dragging) return;
+      const dx = ev.clientX - dragRef.current.startX;
+      const dy = ev.clientY - dragRef.current.startY;
+      const newX = Math.max(0, Math.min(window.innerWidth  - rect.width,  dragRef.current.origX + dx));
+      const newY = Math.max(0, Math.min(window.innerHeight - rect.height, dragRef.current.origY + dy));
+      wrap.style.left   = newX + 'px';
+      wrap.style.top    = newY + 'px';
+      wrap.style.bottom = 'auto';
+    };
+    const onUp = () => {
+      dragRef.current.dragging = false;
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+    };
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  }, []);
+
+  // ---- 播放控制 ----
   const playSong = useCallback((idx) => {
-    setCurrent(idx);
-    setLyricIdx(0);
-    setProgress(0);
+    setCurrent(idx); setLyricIdx(0); setProgress(0);
     setTimeout(() => { audioRef.current?.play().catch(() => {}); setPlaying(true); }, 50);
   }, []);
 
@@ -227,10 +259,7 @@ function MusicPlayer() {
     else { audioRef.current.play().catch(() => {}); setPlaying(true); }
   };
 
-  const prevSong = () => {
-    const idx = (current - 1 + PLAYLIST.length) % PLAYLIST.length;
-    playSong(idx);
-  };
+  const prevSong = () => playSong((current - 1 + PLAYLIST.length) % PLAYLIST.length);
 
   const nextSong = useCallback(() => {
     let idx;
@@ -240,20 +269,17 @@ function MusicPlayer() {
     playSong(idx);
   }, [mode, current, playSong]);
 
-  // 进度 & 歌词同步
+  // ---- 进度 & 歌词同步 ----
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
     const onTime = () => {
       const t = audio.currentTime, d = audio.duration || 0;
-      setCurrentTime(t); setDuration(d);
+      setCurrTime(t); setDuration(d);
       setProgress(d ? (t / d) * 100 : 0);
-      // 歌词匹配
       const lyrics = song.lyrics || [];
       let li = 0;
-      for (let i = 0; i < lyrics.length; i++) {
-        if (t >= lyrics[i].time) li = i;
-      }
+      for (let i = 0; i < lyrics.length; i++) { if (t >= lyrics[i].time) li = i; }
       setLyricIdx(li);
     };
     const onEnded = () => nextSong();
@@ -266,195 +292,164 @@ function MusicPlayer() {
 
   const seekTo = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const ratio = (e.clientX - rect.left) / rect.width;
-    const t = ratio * (audioRef.current?.duration || 0);
+    const t = ((e.clientX - rect.left) / rect.width) * (audioRef.current?.duration || 0);
     if (audioRef.current) audioRef.current.currentTime = t;
   };
 
   const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
-  const cyclicMode = () => setModeIdx(i => (i + 1) % MODES.length);
-
-  // -------- 样式变量（跟随主题色）--------
-  const S = {
-    wrap: {
-      position: 'fixed', bottom: '24px', left: '24px', zIndex: 9999,
-      fontFamily: 'inherit',
-      transition: 'all 0.35s cubic-bezier(.4,0,.2,1)',
-    },
-    card: {
-      background: 'var(--ifm-background-surface-color, rgba(20,20,35,0.92))',
-      backdropFilter: 'blur(16px)',
-      border: '1px solid var(--ifm-color-primary, #7c6ef5)',
-      borderRadius: '16px',
-      boxShadow: '0 8px 32px rgba(0,0,0,0.25)',
-      overflow: 'hidden',
-      width: mini ? '52px' : '280px',
-      transition: 'width 0.35s cubic-bezier(.4,0,.2,1)',
-    },
-    miniBtn: {
-      width: '52px', height: '52px', display: 'flex',
-      alignItems: 'center', justifyContent: 'center',
-      cursor: 'pointer', fontSize: '22px',
-      background: 'none', border: 'none',
-      color: 'var(--ifm-color-primary, #7c6ef5)',
-    },
-    body: {
-      padding: '14px 14px 10px',
-      display: mini ? 'none' : 'block',
-    },
-    songTitle: {
-      fontSize: '14px', fontWeight: 600,
-      color: 'var(--ifm-font-color-base, #fff)',
-      whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-    },
-    artist: {
-      fontSize: '12px', marginTop: '2px',
-      color: 'var(--ifm-color-secondary-darkest, rgba(180,170,255,0.75))',
-    },
-    lyricBox: {
-      margin: '10px 0 8px',
-      minHeight: '36px',
-      background: 'rgba(124,110,245,0.08)',
-      borderRadius: '8px', padding: '6px 10px',
-      fontSize: '12px', color: 'var(--ifm-color-primary, #a89fff)',
-      textAlign: 'center', lineHeight: 1.6,
-      transition: 'opacity 0.3s',
-    },
-    progressWrap: {
-      height: '4px', background: 'rgba(255,255,255,0.1)',
-      borderRadius: '2px', cursor: 'pointer', margin: '8px 0 4px',
-      position: 'relative',
-    },
-    progressFill: {
-      height: '100%', borderRadius: '2px',
-      background: 'var(--ifm-color-primary, #7c6ef5)',
-      width: `${progress}%`, transition: 'width 0.2s linear',
-    },
-    timeRow: {
-      display: 'flex', justifyContent: 'space-between',
-      fontSize: '11px', color: 'rgba(180,170,255,0.6)', margin: '0 0 8px',
-    },
-    controls: {
-      display: 'flex', alignItems: 'center',
-      justifyContent: 'space-between', gap: '4px',
-    },
-    btn: {
-      background: 'none', border: 'none', cursor: 'pointer',
-      color: 'var(--ifm-font-color-base, #fff)', fontSize: '16px',
-      padding: '4px 8px', borderRadius: '8px',
-      transition: 'background 0.15s',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-    },
-    playBtn: {
-      background: 'var(--ifm-color-primary, #7c6ef5)',
-      borderRadius: '50%', width: '36px', height: '36px',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      border: 'none', cursor: 'pointer', fontSize: '16px',
-      color: '#fff', flexShrink: 0,
-      transition: 'transform 0.15s',
-    },
-    volRow: {
-      display: 'flex', alignItems: 'center', gap: '6px',
-      marginTop: '8px', paddingTop: '8px',
-      borderTop: '1px solid rgba(255,255,255,0.06)',
-    },
-    volIcon: { fontSize: '13px', color: 'rgba(180,170,255,0.6)' },
-    volSlider: { flex: 1, accentColor: 'var(--ifm-color-primary, #7c6ef5)', height: '3px' },
-  };
 
   const currentLyric = song.lyrics?.[lyricIdx]?.text || '';
 
+  // ---- 封面样式 ----
+  const coverStyle = {
+    width: mini ? '52px' : '60px',
+    height: mini ? '52px' : '60px',
+    flexShrink: 0, borderRadius: '50%', overflow: 'hidden',
+    border: '2px solid var(--ifm-color-primary, #7c6ef5)',
+    background: 'rgba(124,110,245,0.15)',
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+    animation: playing ? 'coverSpin 8s linear infinite' : 'none',
+    boxShadow: playing ? '0 0 14px rgba(124,110,245,0.6)' : 'none',
+    transition: 'box-shadow 0.3s, width 0.3s, height 0.3s',
+    cursor: 'pointer',
+  };
+
+  const btn = {
+    background: 'none', border: 'none', cursor: 'pointer',
+    color: 'var(--ifm-font-color-base, #fff)', fontSize: '16px',
+    padding: '4px 8px', borderRadius: '8px',
+    display: 'flex', alignItems: 'center', justifyContent: 'center',
+  };
+
   return (
-    <div style={S.wrap}>
-      <div style={S.card}>
-        {/* 迷你模式按钮 */}
-        <button style={S.miniBtn} onClick={() => setMini(m => !m)} title={mini ? '展开播放器' : '收起播放器'}>
-          {mini ? '♪' : '—'}
-        </button>
+    <>
+      <style>{`
+        @keyframes coverSpin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes lyricFadeIn {
+          from { opacity: 0; transform: translateY(6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
 
-        {/* 展开内容 */}
-        <div style={S.body}>
-          <audio ref={audioRef} src={song.src} />
-
-          {/* 封面 + 歌曲信息 */}
-          <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '10px' }}>
-            {/* 封面图：播放时旋转 */}
-            <div style={{
-              width: '60px', height: '60px', flexShrink: 0,
-              borderRadius: '50%', overflow: 'hidden',
-              border: '2px solid var(--ifm-color-primary, #7c6ef5)',
-              background: 'rgba(124,110,245,0.15)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              animation: playing ? 'coverSpin 8s linear infinite' : 'none',
-              boxShadow: playing ? '0 0 12px rgba(124,110,245,0.5)' : 'none',
-              transition: 'box-shadow 0.3s',
-            }}>
-              {song.cover
-                ? <img src={song.cover} alt="cover"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-                : <span style={{ fontSize: '26px' }}>♪</span>
-              }
-            </div>
-            {/* 歌名 + 艺术家 */}
-            <div style={{ flex: 1, overflow: 'hidden' }}>
-              <div style={S.songTitle}>{song.title}</div>
-              <div style={S.artist}>{song.artist}</div>
-            </div>
-          </div>
-          <style>{`
-            @keyframes coverSpin {
-              from { transform: rotate(0deg); }
-              to   { transform: rotate(360deg); }
-            }
-          `}</style>
-
-          {/* 歌词区域 */}
-          {showLyric && (
-            <div style={S.lyricBox}>
-              {currentLyric || '暂无歌词'}
-            </div>
-          )}
-
-          {/* 进度条 */}
-          <div style={S.progressWrap} onClick={seekTo}>
-            <div style={S.progressFill} />
-          </div>
-          <div style={S.timeRow}>
-            <span>{fmt(currentTime)}</span>
-            <span>{fmt(duration)}</span>
-          </div>
-
-          {/* 控制栏 */}
-          <div style={S.controls}>
-            {/* 模式切换 */}
-            <button style={S.btn} onClick={cyclicMode} title={MODE_LABELS[mode]}>
-              {MODE_ICONS[mode]}
-            </button>
-            {/* 上一首 */}
-            <button style={S.btn} onClick={prevSong}>⏮</button>
-            {/* 播放/暂停 */}
-            <button style={S.playBtn} onClick={toggle}>
-              {playing ? '⏸' : '▶'}
-            </button>
-            {/* 下一首 */}
-            <button style={S.btn} onClick={nextSong}>⏭</button>
-            {/* 歌词开关 */}
-            <button style={{...S.btn, opacity: showLyric ? 1 : 0.4}} onClick={() => setShowLyric(s => !s)} title="歌词开关">
-              词
-            </button>
-          </div>
-
-          {/* 音量 */}
-          <div style={S.volRow}>
-            <span style={S.volIcon}>{volume === 0 ? '🔇' : volume < 0.5 ? '🔉' : '🔊'}</span>
-            <input type="range" min="0" max="1" step="0.02"
-              value={volume} style={S.volSlider}
-              onChange={e => setVolume(+e.target.value)}
-            />
+      {/* 浮动歌词 —— 页面垂直居中右侧 */}
+      {showLyric && playing && currentLyric && (
+        <div key={currentLyric} style={{
+          position: 'fixed', right: '32px',
+          top: '50%', transform: 'translateY(-50%)',
+          zIndex: 9998, pointerEvents: 'none',
+          maxWidth: '280px', textAlign: 'right',
+          animation: 'lyricFadeIn 0.4s ease',
+        }}>
+          <div style={{
+            fontSize: '18px', fontWeight: 500, lineHeight: 1.7,
+            color: 'var(--ifm-color-primary, #a89fff)',
+            textShadow: '0 0 20px rgba(124,110,245,0.8), 0 2px 8px rgba(0,0,0,0.5)',
+            letterSpacing: '0.04em',
+          }}>
+            {currentLyric}
           </div>
         </div>
+      )}
+
+      {/* 播放器主体 */}
+      <div ref={wrapRef} onMouseDown={onDragStart} style={{
+        position: 'fixed', bottom: '24px', left: '24px', zIndex: 9999,
+        fontFamily: 'inherit', userSelect: 'none',
+        cursor: 'grab',
+      }}>
+        <div style={{
+          background: 'var(--ifm-background-surface-color, rgba(20,20,35,0.92))',
+          backdropFilter: 'blur(16px)',
+          border: '1px solid var(--ifm-color-primary, #7c6ef5)',
+          borderRadius: mini ? '50%' : '16px',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.25)',
+          overflow: 'hidden',
+          width: mini ? '56px' : '280px',
+          transition: 'width 0.35s cubic-bezier(.4,0,.2,1), border-radius 0.35s',
+          display: 'flex', flexDirection: 'column',
+        }}>
+          {/* 迷你模式：只显示旋转封面 */}
+          {mini ? (
+            <div style={coverStyle} onClick={() => setMini(false)} title="展开播放器">
+              {song.cover
+                ? <img src={song.cover} alt="cover" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                : <span style={{ fontSize: '22px' }}>♪</span>
+              }
+            </div>
+          ) : (
+            <div style={{ padding: '14px 14px 12px' }}>
+              <audio ref={audioRef} src={song.src} />
+
+              {/* 封面 + 歌曲信息 + 收起按钮 */}
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '10px' }}>
+                <div style={coverStyle}>
+                  {song.cover
+                    ? <img src={song.cover} alt="cover" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                    : <span style={{ fontSize: '26px' }}>♪</span>
+                  }
+                </div>
+                <div style={{ flex: 1, overflow: 'hidden' }}>
+                  <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ifm-font-color-base, #fff)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    {song.title}
+                  </div>
+                  <div style={{ fontSize: '12px', marginTop: '2px', color: 'rgba(180,170,255,0.75)' }}>
+                    {song.artist}
+                  </div>
+                </div>
+                {/* 收起按钮 */}
+                <button style={{ ...btn, fontSize: '18px', opacity: 0.6 }} onClick={() => setMini(true)} title="收起">—</button>
+              </div>
+
+              {/* 进度条 */}
+              <div onClick={seekTo} style={{ height: '4px', background: 'rgba(255,255,255,0.1)', borderRadius: '2px', cursor: 'pointer', margin: '4px 0' }}>
+                <div style={{ height: '100%', borderRadius: '2px', background: 'var(--ifm-color-primary, #7c6ef5)', width: `${progress}%`, transition: 'width 0.2s linear' }} />
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: 'rgba(180,170,255,0.6)', margin: '4px 0 10px' }}>
+                <span>{fmt(currentTime)}</span>
+                <span>{fmt(duration)}</span>
+              </div>
+
+              {/* 控制栏 */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                {/* 模式：无底色 */}
+                <button style={btn} onClick={() => setModeIdx(i => (i + 1) % MODES.length)} title={MODE_LABELS[mode]}>
+                  {MODE_ICONS[mode]}
+                </button>
+                <button style={btn} onClick={prevSong}>⏮</button>
+                {/* 播放按钮保留圆形底色 */}
+                <button onClick={toggle} style={{
+                  background: 'var(--ifm-color-primary, #7c6ef5)',
+                  borderRadius: '50%', width: '36px', height: '36px',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  border: 'none', cursor: 'pointer', fontSize: '16px', color: '#fff', flexShrink: 0,
+                }}>
+                  {playing ? '⏸' : '▶'}
+                </button>
+                <button style={btn} onClick={nextSong}>⏭</button>
+                {/* 歌词开关：无底色 */}
+                <button style={{ ...btn, opacity: showLyric ? 1 : 0.35 }} onClick={() => setShowLyric(s => !s)} title="歌词开关">
+                  词
+                </button>
+              </div>
+
+              {/* 音量 */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '10px', paddingTop: '8px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                <span style={{ fontSize: '13px', color: 'rgba(180,170,255,0.6)' }}>
+                  {volume === 0 ? '🔇' : volume < 0.5 ? '🔉' : '🔊'}
+                </span>
+                <input type="range" min="0" max="1" step="0.02" value={volume}
+                  style={{ flex: 1, accentColor: 'var(--ifm-color-primary, #7c6ef5)', height: '3px' }}
+                  onChange={e => setVolume(+e.target.value)}
+                />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
