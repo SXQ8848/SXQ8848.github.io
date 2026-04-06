@@ -37,3 +37,21 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 * {
   cursor: none !important;
 }
+
+/* 让 Docusaurus 各层背景透明，露出底部背景图 */
+.navbar,
+.main-wrapper,
+.footer,
+body,
+html {
+  background: transparent !important;
+}
+
+.navbar {
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.2) !important;
+}
+
+.footer--dark {
+  background: rgba(0, 0, 0, 0.3) !important;
+}
