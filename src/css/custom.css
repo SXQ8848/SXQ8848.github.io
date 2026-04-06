@@ -33,23 +33,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   z-index: 1;
 }
 
-/* 背景图 — 固定全屏半透明覆盖 */
-body {
-  position: relative;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background: url('/img/to-the-moon.jpg') no-repeat center center;
-  background-size: cover;
-  opacity: 0.3;
-  pointer-events: none;
-}
-
-/* MC 钻石剑光标 — 剑尖(左上角)为鼠标指针 */
-*, *::before, *::after {
-  cursor: url('/img/MC_Diamond.png') 0 0, auto;
+/* 隐藏系统光标 — 用 JS 自定义钻石剑光标 */
+* {
+  cursor: none !important;
 }
