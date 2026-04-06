@@ -55,28 +55,18 @@
 
 .vinyl {
   border-radius: 50%;
-  background: conic-gradient(from 0deg, #1a1a1a 0%, #2a2a2a 25%, #1a1a1a 50%, #2a2a2a 75%, #1a1a1a 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: spin 8s linear infinite;
-  animation-play-state: paused;
-  border: 1.5px solid rgba(255, 100, 120, 0.2);
-  box-shadow: 0 0 24px rgba(255, 100, 120, 0.25);
-}
-
-.vinylPlaying {
-  animation-play-state: running;
-}
-
-.vinylCenter {
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ff6b81, #ff4757);
-  border: 2px solid #222;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  animation: spin 8s linear infinite;
+  animation-play-state: paused;
+  border: 2px solid rgba(255, 100, 120, 0.3);
+  box-shadow: 0 0 20px rgba(255, 100, 120, 0.25);
+}
+
+.vinylPlaying {
+  animation-play-state: running;
 }
 
 .vinylCoverImg {
@@ -84,6 +74,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  pointer-events: none;
 }
 
 .toneArm {
@@ -108,12 +99,12 @@
 
 /* ---- Expanded Panel ---- */
 .panel {
-  width: 250px;
+  width: 220px;
   background: linear-gradient(160deg, rgba(25, 20, 40, 0.97), rgba(35, 25, 50, 0.97));
   backdrop-filter: blur(16px);
   border: 1.5px solid var(--player-border);
-  border-radius: 18px;
-  padding: 14px;
+  border-radius: 16px;
+  padding: 10px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   position: relative;
   overflow: visible;
@@ -135,9 +126,9 @@
 .header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-  margin-top: 6px;
+  gap: 8px;
+  margin-bottom: 8px;
+  margin-top: 4px;
 }
 
 .songInfo {
@@ -146,7 +137,7 @@
 }
 
 .songTitle {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--player-text);
   white-space: nowrap;
@@ -163,8 +154,8 @@
 
 /* ---- Icon Buttons (shared) ---- */
 .iconBtn {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   border-radius: 8px;
   background: rgba(255, 100, 120, 0.08);
   border: 1px solid rgba(255, 100, 120, 0.15);
@@ -185,14 +176,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
-  padding: 0 4px;
+  margin-bottom: 6px;
+  padding: 0 2px;
 }
 
 .controlBtn {
-  width: 30px;
-  height: 30px;
-  border-radius: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
   background: rgba(255, 100, 120, 0.06);
   border: 1px solid rgba(255, 100, 120, 0.12);
   display: flex;
@@ -208,8 +199,8 @@
 }
 
 .playBtn {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: linear-gradient(145deg, #ff6b81, #ff4757);
   border: none;
@@ -229,7 +220,7 @@
 
 /* ---- Progress Bar ---- */
 .progressWrap {
-  margin: 8px 0 4px;
+  margin: 4px 0 2px;
   cursor: pointer;
 }
 
@@ -270,7 +261,7 @@
   justify-content: space-between;
   font-size: 9px;
   color: var(--player-text-dim);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -278,8 +269,8 @@
 .volumeWrap {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 4px 6px;
+  gap: 6px;
+  padding: 6px 4px 4px;
   border-top: 1px solid rgba(255, 100, 120, 0.08);
 }
 
@@ -409,9 +400,9 @@
   align-items: flex-end;
   justify-content: center;
   gap: 3px;
-  height: 22px;
-  margin-top: 8px;
-  padding-top: 8px;
+  height: 18px;
+  margin-top: 6px;
+  padding-top: 6px;
   border-top: 1px solid rgba(255, 100, 120, 0.08);
 }
 
@@ -425,8 +416,8 @@
 
 /* ---- Collapse button ---- */
 .collapseBtn {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.06);

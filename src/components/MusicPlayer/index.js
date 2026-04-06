@@ -11,8 +11,8 @@ import Visualizer from './Visualizer';
 import styles from './styles.module.css';
 
 const MODES = ['loop', 'single', 'random'];
-const PLAYER_W = 250;
-const MINI_SIZE = 72;
+const PLAYER_W = 220;
+const MINI_SIZE = 64;
 const STORAGE_KEY = 'music-player-state';
 
 function loadState() {
@@ -226,7 +226,7 @@ export default function MusicPlayer() {
 
             {/* Header: disc + title + playlist + collapse */}
             <div className={styles.header}>
-              <VinylDisc cover={song.cover} playing={playing} size={48} />
+              <VinylDisc cover={song.cover} playing={playing} size={52} />
               <div className={styles.songInfo}>
                 <div className={styles.songTitle}>{song.title}</div>
                 <div className={styles.songArtist}>{song.artist}</div>

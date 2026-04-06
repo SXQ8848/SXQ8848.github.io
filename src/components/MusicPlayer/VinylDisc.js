@@ -3,7 +3,6 @@ import React from 'react';
 import styles from './styles.module.css';
 
 export default function VinylDisc({ cover, playing, size, onClick }) {
-  const centerSize = Math.round(size * 0.5);
   const armHeight = Math.round(size * 0.36);
 
   return (
@@ -16,18 +15,16 @@ export default function VinylDisc({ cover, playing, size, onClick }) {
       {/* Breathing glow */}
       <div className={styles.vinylGlow} />
 
-      {/* Disc */}
+      {/* Disc — cover fills entire circle */}
       <div
         className={`${styles.vinyl} ${playing ? styles.vinylPlaying : ''}`}
         style={{ width: size, height: size }}
       >
-        <div className={styles.vinylCenter} style={{ width: centerSize, height: centerSize }}>
-          {cover ? (
-            <img src={cover} alt="cover" className={styles.vinylCoverImg} />
-          ) : (
-            <span style={{ fontSize: Math.round(size * 0.2), color: '#fff' }}>♪</span>
-          )}
-        </div>
+        {cover ? (
+          <img src={cover} alt="cover" draggable="false" className={styles.vinylCoverImg} />
+        ) : (
+          <span style={{ fontSize: Math.round(size * 0.2), color: '#fff' }}>♪</span>
+        )}
       </div>
 
       {/* Tone arm */}
