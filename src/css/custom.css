@@ -27,8 +27,19 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-/* 确保 Docusaurus 主容器层级高于背景 canvas */
+/* 确保 Docusaurus 主容器层级高于背景 */
 #__docusaurus {
   position: relative;
   z-index: 1;
+}
+
+/* 背景图 */
+body {
+  background: url('/img/to the moon.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* MC 钻石剑光标 */
+*, *::before, *::after {
+  cursor: url('/img/diamond-sword.svg') 4 4, auto;
 }
