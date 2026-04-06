@@ -2,7 +2,7 @@
 import React from 'react';
 import styles from './styles.module.css';
 
-export default function Lyrics({ lyrics, lyricIdx, visible, playerLeft, playerWidth }) {
+export default function Lyrics({ lyrics, lyricIdx, visible }) {
   if (!visible || !lyrics || lyrics.length === 0) return null;
 
   const prev = lyrics[lyricIdx - 1]?.text || '';
@@ -11,10 +11,8 @@ export default function Lyrics({ lyrics, lyricIdx, visible, playerLeft, playerWi
 
   if (!curr) return null;
 
-  const left = playerLeft + playerWidth + 16;
-
   return (
-    <div className={styles.lyricsWrap} style={{ left: left + 'px' }} key={lyricIdx}>
+    <div className={styles.lyricsWrap} key={lyricIdx}>
       {prev && <span className={styles.lyricLine}>{prev}</span>}
       <span className={styles.lyricLineCurrent}>{curr}</span>
       {next && <span className={styles.lyricLine}>{next}</span>}

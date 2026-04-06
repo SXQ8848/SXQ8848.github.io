@@ -194,15 +194,6 @@ export default function MusicPlayer() {
 
   return (
     <>
-      {/* Lyrics */}
-      <Lyrics
-        lyrics={song.lyrics}
-        lyricIdx={lyricIdx}
-        visible={showLyric && playing}
-        playerLeft={playerLeft}
-        playerWidth={playerWidth}
-      />
-
       {/* Player */}
       <div
         ref={wrapRef}
@@ -210,6 +201,13 @@ export default function MusicPlayer() {
         className={styles.player}
       >
         <audio ref={audioRef} src={song.src} />
+
+        {/* Lyrics — inside wrapper so it follows drag */}
+        <Lyrics
+          lyrics={song.lyrics}
+          lyricIdx={lyricIdx}
+          visible={showLyric && playing}
+        />
 
         {mini ? (
           /* ---- Mini mode: vinyl disc ---- */
