@@ -35,7 +35,7 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 /* 背景图 */
 body {
-  background: url('/img/to the moon.jpg') no-repeat center center fixed;
+  background: url('/img/to-the-moon.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
