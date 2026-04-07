@@ -49,9 +49,9 @@ export default function VolumeBar({ volume, onVolumeChange }) {
   const pct = Math.round(volume * 100);
 
   return (
-    <div className={styles.volumeWrap}>
+    <div className={styles.volumeWrap} data-nodrag>
       <SpeakerIcon volume={volume} />
-      <div className={styles.volumeTrack} ref={trackRef} onClick={handleClick}>
+      <div className={styles.volumeTrack} ref={trackRef} onClick={handleClick} onMouseDown={(e) => e.stopPropagation()}>
         <div className={styles.volumeFill} style={{ width: `${pct}%` }} />
         <div
           className={styles.volumeThumb}

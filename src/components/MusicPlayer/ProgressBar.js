@@ -33,8 +33,8 @@ export default function ProgressBar({ progress, currentTime, duration, onSeek })
   }, [calcRatio, onSeek]);
 
   return (
-    <div className={styles.progressWrap}>
-      <div className={styles.progressTrack} ref={trackRef} onClick={handleClick}>
+    <div className={styles.progressWrap} data-nodrag>
+      <div className={styles.progressTrack} ref={trackRef} onClick={handleClick} onMouseDown={(e) => e.stopPropagation()}>
         <div className={styles.progressFill} style={{ width: `${progress}%` }} />
         <div
           className={styles.progressThumb}

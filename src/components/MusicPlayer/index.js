@@ -88,6 +88,8 @@ export default function MusicPlayer() {
   // ---- Drag ----
   const onDragStart = useCallback((e) => {
     if (['BUTTON', 'INPUT', 'IMG', 'svg', 'path', 'line', 'polyline', 'polygon', 'rect', 'text', 'circle'].includes(e.target.tagName)) return;
+    // Don't drag when interacting with progress/volume bars
+    if (e.target.closest('[data-nodrag]')) return;
     e.preventDefault();
     const wrap = wrapRef.current;
     const rect = wrap.getBoundingClientRect();
