@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <Layout title="Home">
       <main style={{ padding: '2rem' }}>
-        <h1>Welcome</h1>
-        <p>This is SXQ Home</p>
+        <h1 style={{ color: '#fff', fontSize: '2.5rem' }}>Welcome</h1>
+        <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1.25rem' }}>This is SXQ Home</p>
       </main>
     </Layout>
   );

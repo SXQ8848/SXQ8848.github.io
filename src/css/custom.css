@@ -43,35 +43,8 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 .main-wrapper,
 .footer,
 body,
-html,
-.hero,
-.hero--primary,
-article,
-.container,
-.col,
-.margin-vert--lg,
-.docMainContainer_node_modules,
-[class*='docMainContainer'],
-[class*='docPage'],
-[class*='docSidebar'],
-[class*='sidebarViewContent'],
-.pagination-nav,
-.theme-doc-markdown,
-.mdxPageWrapper_node_modules,
-[class*='mdxPageWrapper'],
-[class*='tocCollapsible'] {
+html {
   background: transparent !important;
-}
-
-/* 亮色模式下额外清除内容区白色背景 */
-html:not([data-theme='dark']) .main-wrapper *:not(pre):not(code):not(img):not(video):not(iframe):not(button):not(input):not(svg):not(canvas) {
-  background-color: transparent !important;
-}
-
-/* 恢复代码块背景 */
-html:not([data-theme='dark']) pre,
-html:not([data-theme='dark']) code {
-  background-color: rgba(0, 0, 0, 0.05) !important;
 }
 
 .navbar {
