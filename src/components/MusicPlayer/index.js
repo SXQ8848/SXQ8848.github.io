@@ -231,7 +231,7 @@ export default function MusicPlayer() {
         onMouseDown={onDragStart}
         className={styles.player}
       >
-        <audio ref={audioRef} src={song.src} />
+        <audio ref={audioRef} src={song.src} preload="auto" />
 
         {/* Lyrics — inside wrapper so it follows drag */}
         <Lyrics
