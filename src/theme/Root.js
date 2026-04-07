@@ -65,7 +65,7 @@ export default function Root({ children }) {
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
-        opacity: isDark ? 0.7 : 0.45,
+        opacity: isDark ? 0.7 : 0.3,
         pointerEvents: 'none',
         transition: 'opacity 0.3s ease',
       }} />
