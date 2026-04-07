@@ -21,8 +21,8 @@ function DiamondSwordCursor() {
 
     const onMove = (e) => {
       cursor.style.display = 'block';
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
+      cursor.style.left = (e.clientX - 6) + 'px';
+      cursor.style.top = (e.clientY - 2) + 'px';
     };
 
     const onLeave = () => { cursor.style.display = 'none'; };

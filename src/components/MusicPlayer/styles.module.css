@@ -128,19 +128,6 @@
   gap: 6px;
 }
 
-.nowPlaying {
-  position: absolute;
-  top: -1px;
-  right: 16px;
-  background: linear-gradient(135deg, #ff6b81, #ff4757);
-  color: #fff;
-  font-size: 8px;
-  padding: 2px 8px 3px;
-  border-radius: 0 0 6px 6px;
-  letter-spacing: 0.5px;
-  font-weight: 600;
-}
-
 .songInfo {
   flex: 1;
   overflow: hidden;
@@ -408,25 +395,6 @@
   animation: lyricFade 0.35s ease;
 }
 
-/* ---- Visualizer ---- */
-.visualizer {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 2px;
-  height: 18px;
-  padding: 0 4px;
-  align-self: center;
-}
-
-.vizBar {
-  width: 3px;
-  border-radius: 2px;
-  background: linear-gradient(to top, #ff6b81, #ff8fa3);
-  transition: height 0.05s linear;
-  min-height: 2px;
-}
-
 /* ---- Collapse button ---- */
 .collapseBtn {
   width: 24px;
@@ -449,13 +417,13 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* ---- Panel Tone Arm (top-right of expanded panel) ---- */
+/* ---- Panel Tone Arm (near disc, top-right area) ---- */
 .panelToneArm {
   position: absolute;
-  top: -6px;
-  right: 8px;
+  top: 2px;
+  left: 56px;
   width: 3px;
-  height: 28px;
+  height: 24px;
   background: linear-gradient(to bottom, #ffc0cb, #999);
   border-radius: 2px;
   transform-origin: top center;
@@ -464,14 +432,14 @@
 }
 
 .toneArmDotLg {
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   background: linear-gradient(135deg, #ffc0cb, #ff6b81);
   position: absolute;
-  top: -5px;
-  left: -3.5px;
-  box-shadow: 0 0 8px rgba(255, 100, 120, 0.5);
+  top: -4.5px;
+  left: -3px;
+  box-shadow: 0 0 6px rgba(255, 100, 120, 0.4);
 }
 
 /* ---- Hamburger (playlist toggle) ---- */

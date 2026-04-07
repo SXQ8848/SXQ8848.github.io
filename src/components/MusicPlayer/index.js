@@ -7,7 +7,6 @@ import ProgressBar from './ProgressBar';
 import VolumeBar from './VolumeBar';
 import Playlist from './Playlist';
 import Lyrics from './Lyrics';
-import Visualizer from './Visualizer';
 import styles from './styles.module.css';
 
 const MODES = ['loop', 'single', 'random'];
@@ -298,9 +297,6 @@ export default function MusicPlayer() {
               <VolumeBar volume={volume} onVolumeChange={onVolumeChange} />
             </div>
 
-            {/* NOW PLAYING badge */}
-            <div className={styles.nowPlaying}>NOW PLAYING</div>
-
             {/* Playlist dropdown */}
             <Playlist
               songs={PLAYLIST}
@@ -309,9 +305,6 @@ export default function MusicPlayer() {
               onSelect={(i) => { playSong(i); setShowPlaylist(false); }}
               onClose={() => setShowPlaylist(false)}
             />
-
-            {/* Visualizer */}
-            <Visualizer audioRef={audioRef} playing={playing} />
           </div>
         )}
       </div>
