@@ -33,9 +33,9 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   z-index: 1;
 }
 
-/* 隐藏系统光标 — 用 JS 自定义钻石剑光标 */
+/* MC 钻石剑光标 — 原生 CSS 自定义，右键/双击/选中均生效 */
 * {
-  cursor: none !important;
+  cursor: url('/img/cursor_sword.png') 4 2, auto !important;
 }
 
 /* 让 Docusaurus 各层背景透明，露出底部背景图 */
