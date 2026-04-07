@@ -27,11 +27,24 @@ function DiamondSwordCursor() {
 
     const onLeave = () => { cursor.style.display = 'none'; };
 
+    // 禁用右键菜单（防止系统光标闪出）
+    const onContext = (e) => e.preventDefault();
+    // 禁用双击选中文字（防止系统光标闪出）
+    const onSelectStart = (e) => {
+      // 允许 input/textarea 中选中
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      e.preventDefault();
+    };
+
     document.addEventListener('mousemove', onMove);
     document.addEventListener('mouseleave', onLeave);
+    document.addEventListener('contextmenu', onContext);
+    document.addEventListener('selectstart', onSelectStart);
     return () => {
       document.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseleave', onLeave);
+      document.removeEventListener('contextmenu', onContext);
+      document.removeEventListener('selectstart', onSelectStart);
       cursor.remove();
     };
   }, []);
