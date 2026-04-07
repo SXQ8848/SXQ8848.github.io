@@ -32,6 +32,7 @@ export default function MusicPlayer() {
   const wrapRef = useRef(null);
   const dragRef = useRef({ dragging: false, startX: 0, startY: 0, origX: 0, origY: 0 });
   const saveTimerRef = useRef(0);
+  const seekingRef = useRef(false);
 
   // Load persisted state
   const saved = useRef(loadState()).current;
@@ -152,6 +153,7 @@ export default function MusicPlayer() {
     if (!audio) return;
 
     const onTime = () => {
+      if (seekingRef.current) return;
       const t = audio.currentTime || 0;
       const d = isFinite(audio.duration) ? audio.duration : 0;
       setCurrSec(t);
@@ -195,16 +197,31 @@ export default function MusicPlayer() {
   }, [volume]);
 
   // ---- Seek ----
-  const onSeek = (ratio) => {
-    const t = ratio * (audioRef.current?.duration || 0);
-    if (audioRef.current && isFinite(t)) audioRef.current.currentTime = t;
-  };
+  const onSeekStart = useCallback(() => { seekingRef.current = true; }, []);
+  const onSeekEnd = useCallback(() => {
+    // Small delay to let audio.currentTime settle before timeupdate resumes
+    setTimeout(() => { seekingRef.current = false; }, 100);
+  }, []);
+  const onSeek = useCallback((ratio) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const d = audio.duration;
+    if (!isFinite(d)) return;
+    const t = ratio * d;
+    audio.currentTime = t;
+    setCurrSec(t);
+    setProgress(d > 0 ? (t / d) * 100 : 0);
+  }, []);
 
   // ---- Volume change (also persist) ----
-  const onVolumeChange = (val) => {
+  const onVolumeChange = useCallback((val) => {
+    if (audioRef.current) audioRef.current.volume = val;
     setVolume(val);
-    saveState({ current, volume: val, mode, currentTime: audioRef.current?.currentTime || 0 });
-  };
+  }, []);
+  // Persist volume on mouseup (debounced via VolumeBar onEnd)
+  const onVolumeEnd = useCallback(() => {
+    saveState({ current, volume: audioRef.current?.volume ?? 0.6, mode, currentTime: audioRef.current?.currentTime || 0 });
+  }, [current, mode]);
 
   return (
     <>
@@ -279,6 +296,8 @@ export default function MusicPlayer() {
                 currentTime={currSec}
                 duration={durSec}
                 onSeek={onSeek}
+                onSeekStart={onSeekStart}
+                onSeekEnd={onSeekEnd}
               />
 
               {/* Controls */}
@@ -294,7 +313,7 @@ export default function MusicPlayer() {
               />
 
               {/* Volume */}
-              <VolumeBar volume={volume} onVolumeChange={onVolumeChange} />
+              <VolumeBar volume={volume} onVolumeChange={onVolumeChange} onVolumeEnd={onVolumeEnd} />
             </div>
 
             {/* Playlist dropdown */}

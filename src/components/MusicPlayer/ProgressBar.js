@@ -7,11 +7,10 @@ function fmt(s) {
   return `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 }
 
-export default function ProgressBar({ progress, currentTime, duration, onSeek }) {
+export default function ProgressBar({ progress, currentTime, duration, onSeek, onSeekStart, onSeekEnd }) {
   const trackRef = useRef(null);
   const fillRef = useRef(null);
   const thumbRef = useRef(null);
-  const draggingRef = useRef(false);
 
   const calcRatio = useCallback((clientX) => {
     const rect = trackRef.current.getBoundingClientRect();
@@ -27,7 +26,7 @@ export default function ProgressBar({ progress, currentTime, duration, onSeek })
   const handleMouseDown = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
-    draggingRef.current = true;
+    onSeekStart();
     const ratio = calcRatio(e.clientX);
     updateVisual(ratio);
     onSeek(ratio);
@@ -38,13 +37,13 @@ export default function ProgressBar({ progress, currentTime, duration, onSeek })
       onSeek(r);
     };
     const onUp = () => {
-      draggingRef.current = false;
+      onSeekEnd();
       document.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseup', onUp);
     };
     document.addEventListener('mousemove', onMove);
     document.addEventListener('mouseup', onUp);
-  }, [calcRatio, updateVisual, onSeek]);
+  }, [calcRatio, updateVisual, onSeek, onSeekStart, onSeekEnd]);
 
   const pct = progress + '%';
 

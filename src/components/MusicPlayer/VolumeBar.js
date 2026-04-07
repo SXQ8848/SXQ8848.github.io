@@ -21,7 +21,7 @@ function SpeakerIcon({ volume }) {
   );
 }
 
-export default function VolumeBar({ volume, onVolumeChange }) {
+export default function VolumeBar({ volume, onVolumeChange, onVolumeEnd }) {
   const trackRef = useRef(null);
   const fillRef = useRef(null);
   const thumbRef = useRef(null);
@@ -50,12 +50,13 @@ export default function VolumeBar({ volume, onVolumeChange }) {
       onVolumeChange(v);
     };
     const onUp = () => {
+      if (onVolumeEnd) onVolumeEnd();
       document.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseup', onUp);
     };
     document.addEventListener('mousemove', onMove);
     document.addEventListener('mouseup', onUp);
-  }, [calcVolume, updateVisual, onVolumeChange]);
+  }, [calcVolume, updateVisual, onVolumeChange, onVolumeEnd]);
 
   const pct = Math.round(volume * 100) + '%';
 
