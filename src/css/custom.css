@@ -49,17 +49,13 @@ html {
 
 .navbar {
   backdrop-filter: blur(12px);
-  background: rgba(0, 0, 0, 0.08) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
   border-bottom: none !important;
   box-shadow: none !important;
 }
 
-html[data-theme='dark'] .navbar {
-  background: rgba(0, 0, 0, 0.15) !important;
-}
-
-.footer--dark {
-  background: rgba(0, 0, 0, 0.15) !important;
+.footer {
+  background: rgba(255, 255, 255, 0.1) !important;
   border-top: none !important;
   box-shadow: none !important;
 }
@@ -70,18 +66,3 @@ html[data-theme='dark'] .navbar {
   box-shadow: none !important;
 }
 
-/* 全局文字强制纯白，与导航栏一致 */
-body,
-.main-wrapper,
-.main-wrapper h1,
-.main-wrapper h2,
-.main-wrapper h3,
-.main-wrapper h4,
-.main-wrapper p,
-.main-wrapper li,
-.main-wrapper span,
-.main-wrapper a,
-.footer,
-.footer a {
-  color: #fff !important;
-}

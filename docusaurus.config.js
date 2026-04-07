@@ -27,7 +27,7 @@ module.exports = {
   ],
   themeConfig: {
     colorMode: {
-      defaultMode: 'dark',
+      defaultMode: 'light',
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },
@@ -39,7 +39,7 @@ module.exports = {
       ],
     },
     footer: {
-      style: 'dark',
+      style: 'light',
       copyright: `Copyright © ${new Date().getFullYear()} SXQ`,
     },
     prism: {
