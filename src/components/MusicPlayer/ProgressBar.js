@@ -9,38 +9,54 @@ function fmt(s) {
 
 export default function ProgressBar({ progress, currentTime, duration, onSeek }) {
   const trackRef = useRef(null);
+  const fillRef = useRef(null);
+  const thumbRef = useRef(null);
+  const draggingRef = useRef(false);
 
   const calcRatio = useCallback((clientX) => {
     const rect = trackRef.current.getBoundingClientRect();
     return Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
   }, []);
 
-  const handleClick = (e) => {
-    onSeek(calcRatio(e.clientX));
-  };
+  const updateVisual = useCallback((ratio) => {
+    const pct = ratio * 100 + '%';
+    if (fillRef.current) fillRef.current.style.width = pct;
+    if (thumbRef.current) thumbRef.current.style.left = pct;
+  }, []);
 
-  const handleDragStart = useCallback((e) => {
+  const handleMouseDown = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
-    onSeek(calcRatio(e.clientX));
-    const onMove = (ev) => onSeek(calcRatio(ev.clientX));
+    draggingRef.current = true;
+    const ratio = calcRatio(e.clientX);
+    updateVisual(ratio);
+    onSeek(ratio);
+
+    const onMove = (ev) => {
+      const r = calcRatio(ev.clientX);
+      updateVisual(r);
+      onSeek(r);
+    };
     const onUp = () => {
+      draggingRef.current = false;
       document.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseup', onUp);
     };
     document.addEventListener('mousemove', onMove);
     document.addEventListener('mouseup', onUp);
-  }, [calcRatio, onSeek]);
+  }, [calcRatio, updateVisual, onSeek]);
+
+  const pct = progress + '%';
 
   return (
     <div className={styles.progressWrap} data-nodrag>
-      <div className={styles.progressTrack} ref={trackRef} onClick={handleClick} onMouseDown={(e) => e.stopPropagation()}>
-        <div className={styles.progressFill} style={{ width: `${progress}%` }} />
-        <div
-          className={styles.progressThumb}
-          style={{ left: `${progress}%` }}
-          onMouseDown={handleDragStart}
-        />
+      <div
+        className={styles.progressTrack}
+        ref={trackRef}
+        onMouseDown={handleMouseDown}
+      >
+        <div ref={fillRef} className={styles.progressFill} style={{ width: pct }} />
+        <div ref={thumbRef} className={styles.progressThumb} style={{ left: pct }} />
       </div>
       <div className={styles.timeRow}>
         <span>{fmt(currentTime)}</span>

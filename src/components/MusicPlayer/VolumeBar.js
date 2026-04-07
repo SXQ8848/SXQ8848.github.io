@@ -23,41 +23,52 @@ function SpeakerIcon({ volume }) {
 
 export default function VolumeBar({ volume, onVolumeChange }) {
   const trackRef = useRef(null);
+  const fillRef = useRef(null);
+  const thumbRef = useRef(null);
 
   const calcVolume = useCallback((clientX) => {
     const rect = trackRef.current.getBoundingClientRect();
     return Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
   }, []);
 
-  const handleClick = (e) => {
-    onVolumeChange(calcVolume(e.clientX));
-  };
+  const updateVisual = useCallback((val) => {
+    const pct = Math.round(val * 100) + '%';
+    if (fillRef.current) fillRef.current.style.width = pct;
+    if (thumbRef.current) thumbRef.current.style.left = pct;
+  }, []);
 
-  const handleDragStart = useCallback((e) => {
+  const handleMouseDown = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
-    onVolumeChange(calcVolume(e.clientX));
-    const onMove = (ev) => onVolumeChange(calcVolume(ev.clientX));
+    const val = calcVolume(e.clientX);
+    updateVisual(val);
+    onVolumeChange(val);
+
+    const onMove = (ev) => {
+      const v = calcVolume(ev.clientX);
+      updateVisual(v);
+      onVolumeChange(v);
+    };
     const onUp = () => {
       document.removeEventListener('mousemove', onMove);
       document.removeEventListener('mouseup', onUp);
     };
     document.addEventListener('mousemove', onMove);
     document.addEventListener('mouseup', onUp);
-  }, [calcVolume, onVolumeChange]);
+  }, [calcVolume, updateVisual, onVolumeChange]);
 
-  const pct = Math.round(volume * 100);
+  const pct = Math.round(volume * 100) + '%';
 
   return (
     <div className={styles.volumeWrap} data-nodrag>
       <SpeakerIcon volume={volume} />
-      <div className={styles.volumeTrack} ref={trackRef} onClick={handleClick} onMouseDown={(e) => e.stopPropagation()}>
-        <div className={styles.volumeFill} style={{ width: `${pct}%` }} />
-        <div
-          className={styles.volumeThumb}
-          style={{ left: `${pct}%` }}
-          onMouseDown={handleDragStart}
-        />
+      <div
+        className={styles.volumeTrack}
+        ref={trackRef}
+        onMouseDown={handleMouseDown}
+      >
+        <div ref={fillRef} className={styles.volumeFill} style={{ width: pct }} />
+        <div ref={thumbRef} className={styles.volumeThumb} style={{ left: pct }} />
       </div>
     </div>
   );
