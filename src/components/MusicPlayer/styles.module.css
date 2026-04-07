@@ -97,9 +97,12 @@
   box-shadow: 0 0 6px rgba(255, 100, 120, 0.4);
 }
 
-/* ---- Expanded Panel ---- */
-.panel {
-  width: 220px;
+/* ---- Horizontal Expanded Panel ---- */
+.hPanel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
   background: linear-gradient(160deg, rgba(25, 20, 40, 0.97), rgba(35, 25, 50, 0.97));
   backdrop-filter: blur(16px);
   border: 1.5px solid var(--player-border);
@@ -108,6 +111,21 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   position: relative;
   overflow: visible;
+  white-space: nowrap;
+}
+
+.hContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 180px;
+  max-width: 200px;
+}
+
+.hTopRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .nowPlaying {
@@ -121,14 +139,6 @@
   border-radius: 0 0 6px 6px;
   letter-spacing: 0.5px;
   font-weight: 600;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-  margin-top: 4px;
 }
 
 .songInfo {
@@ -165,6 +175,7 @@
   cursor: pointer;
   padding: 0;
   transition: background 0.2s;
+  flex-shrink: 0;
 }
 
 .iconBtn:hover {
@@ -176,7 +187,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
   padding: 0 2px;
 }
 
@@ -220,7 +231,7 @@
 
 /* ---- Progress Bar ---- */
 .progressWrap {
-  margin: 4px 0 2px;
+  margin: 2px 0 0;
   cursor: pointer;
 }
 
@@ -261,7 +272,7 @@
   justify-content: space-between;
   font-size: 9px;
   color: var(--player-text-dim);
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   font-variant-numeric: tabular-nums;
 }
 
@@ -270,7 +281,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 4px 4px;
+  padding: 4px 4px 2px;
   border-top: 1px solid rgba(255, 100, 120, 0.08);
 }
 
@@ -308,7 +319,7 @@
   left: 0;
   top: 100%;
   margin-top: 8px;
-  width: 220px;
+  width: 260px;
   background: rgba(20, 20, 35, 0.97);
   border: 1px solid rgba(255, 100, 120, 0.2);
   border-radius: 12px;
@@ -401,11 +412,10 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 3px;
+  gap: 2px;
   height: 18px;
-  margin-top: 6px;
-  padding-top: 6px;
-  border-top: 1px solid rgba(255, 100, 120, 0.08);
+  padding: 0 4px;
+  align-self: center;
 }
 
 .vizBar {
@@ -431,6 +441,7 @@
   font-size: 13px;
   padding: 0;
   transition: background 0.2s;
+  flex-shrink: 0;
 }
 
 .collapseBtn:hover {

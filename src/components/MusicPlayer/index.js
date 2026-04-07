@@ -11,7 +11,6 @@ import Visualizer from './Visualizer';
 import styles from './styles.module.css';
 
 const MODES = ['loop', 'single', 'random'];
-const PLAYER_W = 220;
 const MINI_SIZE = 64;
 const STORAGE_KEY = 'music-player-state';
 
@@ -51,7 +50,6 @@ export default function MusicPlayer() {
   const [lyricIdx, setLyricIdx] = useState(0);
   const [showLyric, setShowLyric] = useState(true);
   const [showPlaylist, setShowPlaylist] = useState(false);
-  const [playerLeft, setPlayerLeft] = useState(24);
 
   const song = PLAYLIST[current];
   const mode = MODES[modeIdx];
@@ -69,6 +67,24 @@ export default function MusicPlayer() {
     return () => audio.removeEventListener('loadedmetadata', onLoaded);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // ---- Auto-reposition: keep player within viewport on expand/collapse ----
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    const rect = wrap.getBoundingClientRect();
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    let newLeft = rect.left;
+    let newTop = rect.top;
+    if (rect.right > vw) newLeft = Math.max(0, vw - rect.width);
+    if (rect.bottom > vh) newTop = Math.max(0, vh - rect.height);
+    if (newLeft !== rect.left || newTop !== rect.top) {
+      wrap.style.left = newLeft + 'px';
+      wrap.style.top = newTop + 'px';
+      wrap.style.bottom = 'auto';
+    }
+  }, [mini]);
+
   // ---- Drag ----
   const onDragStart = useCallback((e) => {
     if (['BUTTON', 'INPUT', 'IMG', 'svg', 'path', 'line', 'polyline', 'polygon', 'rect', 'text', 'circle'].includes(e.target.tagName)) return;
@@ -83,7 +99,6 @@ export default function MusicPlayer() {
       wrap.style.left = newX + 'px';
       wrap.style.top = newY + 'px';
       wrap.style.bottom = 'auto';
-      setPlayerLeft(newX);
     };
     const onUp = () => {
       dragRef.current.dragging = false;
@@ -190,8 +205,6 @@ export default function MusicPlayer() {
     saveState({ current, volume: val, mode, currentTime: audioRef.current?.currentTime || 0 });
   };
 
-  const playerWidth = mini ? MINI_SIZE : PLAYER_W;
-
   return (
     <>
       {/* Player */}
@@ -218,36 +231,65 @@ export default function MusicPlayer() {
             onClick={() => setMini(false)}
           />
         ) : (
-          /* ---- Expanded mode ---- */
-          <div className={styles.panel}>
-            <div className={styles.nowPlaying}>NOW PLAYING</div>
+          /* ---- Expanded mode: horizontal layout ---- */
+          <div className={styles.hPanel}>
+            {/* Left: vinyl disc */}
+            <VinylDisc cover={song.cover} playing={playing} size={52} />
 
-            {/* Header: disc + title + playlist + collapse */}
-            <div className={styles.header}>
-              <VinylDisc cover={song.cover} playing={playing} size={52} />
-              <div className={styles.songInfo}>
-                <div className={styles.songTitle}>{song.title}</div>
-                <div className={styles.songArtist}>{song.artist}</div>
+            {/* Right: controls column */}
+            <div className={styles.hContent}>
+              {/* Top row: song info + playlist + collapse */}
+              <div className={styles.hTopRow}>
+                <div className={styles.songInfo}>
+                  <div className={styles.songTitle}>{song.title}</div>
+                  <div className={styles.songArtist}>{song.artist}</div>
+                </div>
+
+                {/* Playlist hamburger */}
+                <button
+                  className={styles.iconBtn}
+                  onClick={() => setShowPlaylist((s) => !s)}
+                  title="歌单"
+                >
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2.5px' }}>
+                    <div className={styles.hamburgerLine} style={{ width: 12 }} />
+                    <div className={styles.hamburgerLine} style={{ width: 10 }} />
+                    <div className={styles.hamburgerLine} style={{ width: 8 }} />
+                  </div>
+                </button>
+
+                {/* Collapse */}
+                <button className={styles.collapseBtn} onClick={() => setMini(true)} title="收起">
+                  —
+                </button>
               </div>
 
-              {/* Playlist hamburger */}
-              <button
-                className={styles.iconBtn}
-                onClick={() => setShowPlaylist((s) => !s)}
-                title="歌单"
-              >
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2.5px' }}>
-                  <div className={styles.hamburgerLine} style={{ width: 12 }} />
-                  <div className={styles.hamburgerLine} style={{ width: 10 }} />
-                  <div className={styles.hamburgerLine} style={{ width: 8 }} />
-                </div>
-              </button>
+              {/* Progress */}
+              <ProgressBar
+                progress={progress}
+                currentTime={currSec}
+                duration={durSec}
+                onSeek={onSeek}
+              />
 
-              {/* Collapse */}
-              <button className={styles.collapseBtn} onClick={() => setMini(true)} title="收起">
-                —
-              </button>
+              {/* Controls */}
+              <PlayerControls
+                playing={playing}
+                mode={mode}
+                showLyric={showLyric}
+                onToggle={toggle}
+                onPrev={prevSong}
+                onNext={nextSong}
+                onModeChange={cycleMode}
+                onLyricToggle={() => setShowLyric((s) => !s)}
+              />
+
+              {/* Volume */}
+              <VolumeBar volume={volume} onVolumeChange={onVolumeChange} />
             </div>
+
+            {/* NOW PLAYING badge */}
+            <div className={styles.nowPlaying}>NOW PLAYING</div>
 
             {/* Playlist dropdown */}
             <Playlist
@@ -257,29 +299,6 @@ export default function MusicPlayer() {
               onSelect={(i) => { playSong(i); setShowPlaylist(false); }}
               onClose={() => setShowPlaylist(false)}
             />
-
-            {/* Progress */}
-            <ProgressBar
-              progress={progress}
-              currentTime={currSec}
-              duration={durSec}
-              onSeek={onSeek}
-            />
-
-            {/* Controls */}
-            <PlayerControls
-              playing={playing}
-              mode={mode}
-              showLyric={showLyric}
-              onToggle={toggle}
-              onPrev={prevSong}
-              onNext={nextSong}
-              onModeChange={cycleMode}
-              onLyricToggle={() => setShowLyric((s) => !s)}
-            />
-
-            {/* Volume */}
-            <VolumeBar volume={volume} onVolumeChange={onVolumeChange} />
 
             {/* Visualizer */}
             <Visualizer audioRef={audioRef} playing={playing} />
