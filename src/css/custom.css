@@ -48,10 +48,24 @@ html {
 }
 
 .navbar {
-  backdrop-filter: blur(8px);
-  background: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.08) !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+html[data-theme='dark'] .navbar {
+  background: rgba(0, 0, 0, 0.15) !important;
 }
 
 .footer--dark {
-  background: rgba(0, 0, 0, 0.3) !important;
+  background: rgba(0, 0, 0, 0.15) !important;
+  border-top: none !important;
+  box-shadow: none !important;
+}
+
+/* 消除各区域之间的分割线和阴影 */
+.main-wrapper {
+  border: none !important;
+  box-shadow: none !important;
 }
