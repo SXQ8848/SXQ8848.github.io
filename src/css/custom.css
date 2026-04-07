@@ -49,13 +49,13 @@ html {
 
 .navbar {
   backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.15) !important;
+  background: rgba(0, 0, 0, 0.15) !important;
   border-bottom: none !important;
   box-shadow: none !important;
 }
 
-.footer {
-  background: rgba(255, 255, 255, 0.1) !important;
+.footer--dark {
+  background: rgba(0, 0, 0, 0.15) !important;
   border-top: none !important;
   box-shadow: none !important;
 }

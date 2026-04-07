@@ -448,6 +448,31 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
+/* ---- Panel Tone Arm (top-right of expanded panel) ---- */
+.panelToneArm {
+  position: absolute;
+  top: -6px;
+  right: 8px;
+  width: 3px;
+  height: 28px;
+  background: linear-gradient(to bottom, #ffc0cb, #999);
+  border-radius: 2px;
+  transform-origin: top center;
+  transition: transform 0.4s ease;
+  z-index: 11;
+}
+
+.toneArmDotLg {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffc0cb, #ff6b81);
+  position: absolute;
+  top: -5px;
+  left: -3.5px;
+  box-shadow: 0 0 8px rgba(255, 100, 120, 0.5);
+}
+
 /* ---- Hamburger (playlist toggle) ---- */
 .hamburgerLine {
   background: rgba(255, 180, 190, 0.6);

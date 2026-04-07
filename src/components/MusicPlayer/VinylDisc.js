@@ -2,7 +2,7 @@
 import React from 'react';
 import styles from './styles.module.css';
 
-export default function VinylDisc({ cover, playing, size, onClick }) {
+export default function VinylDisc({ cover, playing, size, onClick, showArm = true }) {
   const armHeight = Math.round(size * 0.36);
 
   return (
@@ -28,17 +28,19 @@ export default function VinylDisc({ cover, playing, size, onClick }) {
       </div>
 
       {/* Tone arm */}
-      <div
-        className={styles.toneArm}
-        style={{
-          height: armHeight,
-          top: -Math.round(size * 0.08),
-          right: -Math.round(size * 0.14),
-          transform: playing ? 'rotate(25deg)' : 'rotate(0deg)',
-        }}
-      >
-        <div className={styles.toneArmDot} />
-      </div>
+      {showArm && (
+        <div
+          className={styles.toneArm}
+          style={{
+            height: armHeight,
+            top: -Math.round(size * 0.08),
+            right: -Math.round(size * 0.14),
+            transform: playing ? 'rotate(25deg)' : 'rotate(0deg)',
+          }}
+        >
+          <div className={styles.toneArmDot} />
+        </div>
+      )}
     </div>
   );
 }

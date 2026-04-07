@@ -233,8 +233,16 @@ export default function MusicPlayer() {
         ) : (
           /* ---- Expanded mode: horizontal layout ---- */
           <div className={styles.hPanel}>
-            {/* Left: vinyl disc */}
-            <VinylDisc cover={song.cover} playing={playing} size={52} />
+            {/* Tone arm at top-right */}
+            <div
+              className={styles.panelToneArm}
+              style={{ transform: playing ? 'rotate(25deg)' : 'rotate(0deg)' }}
+            >
+              <div className={styles.toneArmDotLg} />
+            </div>
+
+            {/* Left: vinyl disc (no arm, arm is on panel) */}
+            <VinylDisc cover={song.cover} playing={playing} size={52} showArm={false} />
 
             {/* Right: controls column */}
             <div className={styles.hContent}>
