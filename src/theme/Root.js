@@ -1,6 +1,7 @@
 // src/theme/Root.js
 import React from 'react';
 import MusicPlayer from '../components/MusicPlayer';
+import RainbowTrail from '../components/RainbowTrail';
 
 
 // ==================== 根组件 ====================
@@ -19,6 +20,7 @@ export default function Root({ children }) {
         opacity: 0.7,
         pointerEvents: 'none',
       }} />
+      <RainbowTrail />
       <MusicPlayer />
       {children}
     </>
