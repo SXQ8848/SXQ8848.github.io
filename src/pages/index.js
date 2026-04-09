@@ -77,11 +77,17 @@ export default function Home() {
         <section className={styles.hero}>
           <Particles />
           <div className={styles.heroCard}>
-            <div
+            <img
+              src={avatarUrl}
+              alt="SXQ"
               className={styles.avatar}
-              role="img"
-              aria-label="SXQ"
-              style={{ backgroundImage: `url(${avatarUrl})` }}
+              style={{
+                display: 'block',
+                width: '120px',
+                height: '120px',
+                borderRadius: '50%',
+                objectFit: 'cover',
+              }}
             />
             <div className={styles.greeting}>Hello, I'm</div>
             <h1 className={styles.title}>SXQ</h1>
