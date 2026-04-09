@@ -75,6 +75,9 @@ export default function Home() {
         <section className={styles.hero}>
           <Particles />
           <div className={styles.heroCard}>
+            <div className={styles.avatarWrap}>
+              <img src="/img/avatar.jpg" alt="SXQ" className={styles.avatar} />
+            </div>
             <div className={styles.greeting}>Hello, I'm</div>
             <h1 className={styles.title}>SXQ</h1>
             <div className={styles.subtitle}>
