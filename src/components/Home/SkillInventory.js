@@ -27,6 +27,10 @@ const SKILLS = [
   ]},
 ];
 
+const ALL_SKILLS = SKILLS.flatMap((cat) =>
+  cat.items.map((skill) => ({ ...skill, color: cat.color }))
+);
+
 export default function SkillInventory() {
   const [ref, visible] = useScrollReveal();
   const [tooltip, setTooltip] = useState(null);
@@ -35,29 +39,27 @@ export default function SkillInventory() {
     <div ref={ref} className={`${mcTheme.section} ${visible ? mcTheme.pixelRevealVisible : mcTheme.pixelRevealHidden}`}>
       <SectionTitle emoji="⛏" title="Skill Inventory" />
       <div className={styles.grid}>
-        {SKILLS.map((cat) =>
-          cat.items.map((skill, i) => (
-            <div
-              key={skill.name}
-              className={styles.slot}
-              style={{
-                borderColor: cat.color + '44',
-                backgroundColor: cat.color + '18',
-                animationDelay: visible ? `${i * 80}ms` : '0ms',
-              }}
-              onMouseEnter={() => setTooltip(skill)}
-              onMouseLeave={() => setTooltip(null)}
-            >
-              <span className={styles.slotName}>{skill.name}</span>
-              {tooltip?.name === skill.name && (
-                <div className={styles.tooltip} style={{ borderColor: cat.color + '66' }}>
-                  <div className={styles.tooltipTitle} style={{ color: cat.color }}>{skill.name}</div>
-                  <div className={styles.tooltipDesc}>{skill.desc}</div>
-                </div>
-              )}
-            </div>
-          ))
-        )}
+        {ALL_SKILLS.map((skill, i) => (
+          <div
+            key={skill.name}
+            className={styles.slot}
+            style={{
+              borderColor: skill.color + '44',
+              backgroundColor: skill.color + '18',
+              animationDelay: visible ? `${i * 80}ms` : '0ms',
+            }}
+            onMouseEnter={() => setTooltip(skill)}
+            onMouseLeave={() => setTooltip(null)}
+          >
+            <span className={styles.slotName}>{skill.name}</span>
+            {tooltip?.name === skill.name && (
+              <div className={styles.tooltip} style={{ borderColor: skill.color + '66' }}>
+                <div className={styles.tooltipTitle} style={{ color: skill.color }}>{skill.name}</div>
+                <div className={styles.tooltipDesc}>{skill.desc}</div>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
