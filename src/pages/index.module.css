@@ -172,6 +172,9 @@
 
 /* ---- Mobile ---- */
 @media screen and (max-width: 600px) {
+  .hero {
+    min-height: 80vh;
+  }
   .heroCard {
     padding: 2rem 1.5rem;
   }

@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '@theme/Layout';
 import styles from './index.module.css';
+import SkillInventory from '../components/Home/SkillInventory';
+import ProjectCards from '../components/Home/ProjectCards';
+import StatsAchievement from '../components/Home/StatsAchievement';
+import Timeline from '../components/Home/Timeline';
+import RecentUpdates from '../components/Home/RecentUpdates';
+import SocialLinks from '../components/Home/SocialLinks';
 
 function Typewriter({ texts, speed = 80, pause = 2000 }) {
   const [display, setDisplay] = useState('');
@@ -34,7 +40,6 @@ function Typewriter({ texts, speed = 80, pause = 2000 }) {
 }
 
 function Particles() {
-  // Generate floating particles for ambiance
   const particles = Array.from({ length: 20 }, (_, i) => ({
     id: i,
     left: Math.random() * 100,
@@ -65,37 +70,49 @@ function Particles() {
 export default function Home() {
   return (
     <Layout title="Home">
-      <main className={styles.hero}>
-        <Particles />
-        <div className={styles.heroCard}>
-          <div className={styles.greeting}>Hello, I'm</div>
-          <h1 className={styles.title}>SXQ</h1>
-          <div className={styles.subtitle}>
-            <Typewriter
-              texts={[
-                'Welcome to my digital space',
-                'Explorer & Creator',
-                'Building cool things',
-              ]}
-            />
+      <main>
+        {/* Hero Section */}
+        <section className={styles.hero}>
+          <Particles />
+          <div className={styles.heroCard}>
+            <div className={styles.greeting}>Hello, I'm</div>
+            <h1 className={styles.title}>SXQ</h1>
+            <div className={styles.subtitle}>
+              <Typewriter
+                texts={[
+                  '硬件原理探索者',
+                  'AI 工具玩家',
+                  '日常折腾爱好者',
+                  'Building cool things',
+                ]}
+              />
+            </div>
+            <p className={styles.description}>
+              一个关于硬件、AI、编程和日常折腾的个人知识库。
+            </p>
+            <div className={styles.actions}>
+              <a href="/docs/intro" className={styles.btnPrimary}>
+                Explore Docs
+              </a>
+              <a
+                href="https://github.com/SXQ8848"
+                className={styles.btnGhost}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub
+              </a>
+            </div>
           </div>
-          <p className={styles.description}>
-            A personal wiki for notes, projects, and everything in between.
-          </p>
-          <div className={styles.actions}>
-            <a href="/docs/intro" className={styles.btnPrimary}>
-              Explore Docs
-            </a>
-            <a
-              href="https://github.com/SXQ8848"
-              className={styles.btnGhost}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
-          </div>
-        </div>
+        </section>
+
+        {/* Scrolling Sections */}
+        <SkillInventory />
+        <ProjectCards />
+        <StatsAchievement />
+        <Timeline />
+        <RecentUpdates />
+        <SocialLinks />
       </main>
     </Layout>
   );
