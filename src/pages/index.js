@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '@theme/Layout';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './index.module.css';
 import SkillInventory from '../components/Home/SkillInventory';
 import ProjectCards from '../components/Home/ProjectCards';
@@ -68,6 +69,7 @@ function Particles() {
 }
 
 export default function Home() {
+  const avatarUrl = useBaseUrl('/img/avatar.jpg');
   return (
     <Layout title="Home">
       <main>
@@ -76,7 +78,7 @@ export default function Home() {
           <Particles />
           <div className={styles.heroCard}>
             <div className={styles.avatarWrap}>
-              <img src="/img/avatar.jpg" alt="SXQ" className={styles.avatar} />
+              <img src={avatarUrl} alt="SXQ" className={styles.avatar} />
             </div>
             <div className={styles.greeting}>Hello, I'm</div>
             <h1 className={styles.title}>SXQ</h1>
