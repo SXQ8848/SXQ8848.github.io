@@ -1,0 +1,75 @@
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.slot {
+  position: relative;
+  padding: 8px 16px;
+  border: 2px solid;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  cursor: default;
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.1),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.2),
+    3px 3px 0 rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s;
+  animation: slotBounce 0.4s ease both;
+}
+
+@keyframes slotBounce {
+  0% { opacity: 0; transform: scale(0.5) translateY(20px); }
+  60% { transform: scale(1.08) translateY(-4px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.slot:hover {
+  transform: translateY(-2px);
+}
+
+.slotName {
+  white-space: nowrap;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 10, 30, 0.95);
+  border: 2px solid;
+  border-radius: 4px;
+  padding: 8px 12px;
+  min-width: 160px;
+  z-index: 100;
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.08),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.2),
+    4px 4px 0 rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.tooltipTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.tooltipDesc {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Courier New', monospace;
+}
+
+@media screen and (max-width: 600px) {
+  .slot {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+}
