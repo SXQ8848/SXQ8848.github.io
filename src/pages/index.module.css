@@ -72,22 +72,18 @@
 }
 
 /* ---- Avatar ---- */
-.avatarWrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.2rem;
-}
-
 .avatar {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  object-fit: cover;
+  margin: 0 auto 1.2rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border: 3px solid rgba(110, 231, 183, 0.3);
   box-shadow:
     0 0 20px rgba(110, 231, 183, 0.2),
     0 0 40px rgba(110, 231, 183, 0.1);
-  image-rendering: auto;
   filter: contrast(1.05) saturate(1.1);
   transition: transform 0.3s, box-shadow 0.3s;
 }
