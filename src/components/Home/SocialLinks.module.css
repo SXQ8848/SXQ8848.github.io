@@ -1,0 +1,64 @@
+.grid {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.itemWrap {
+  position: relative;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: rgba(15, 15, 30, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  color: #e2e8f0 !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.15s, box-shadow 0.3s;
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.05),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.15),
+    3px 3px 0 rgba(0, 0, 0, 0.3);
+}
+
+.item:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.05),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.15),
+    3px 3px 0 rgba(0, 0, 0, 0.3),
+    0 0 16px var(--glow-color, rgba(110, 231, 183, 0.4));
+}
+
+.icon {
+  font-size: 1.3rem;
+}
+
+.name {
+  font-family: 'Courier New', monospace;
+}
+
+.popup {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 10, 30, 0.95);
+  border: 2px solid;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Courier New', monospace;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+}
