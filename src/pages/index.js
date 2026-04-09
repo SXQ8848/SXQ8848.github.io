@@ -89,7 +89,6 @@ export default function Home() {
                 objectFit: 'cover',
               }}
             />
-            <div className={styles.greeting}>Hello, I'm</div>
             <h1 className={styles.title}>SXQ</h1>
             <div className={styles.subtitle}>
               <Typewriter
