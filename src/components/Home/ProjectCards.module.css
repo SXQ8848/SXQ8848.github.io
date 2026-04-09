@@ -1,0 +1,83 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  position: relative;
+  background: rgba(15, 15, 30, 0.4);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.15s ease;
+  box-shadow:
+    inset 2px 2px 0 rgba(255, 255, 255, 0.06),
+    inset -2px -2px 0 rgba(0, 0, 0, 0.15),
+    4px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.cardGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: background 0.2s;
+}
+
+.cardBody {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem;
+}
+
+.cardTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0 0 0.5rem;
+}
+
+.cardDesc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.5;
+  margin: 0 0 1rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  font-size: 0.72rem;
+  font-family: 'Courier New', monospace;
+  padding: 2px 8px;
+  border: 1px solid rgba(110, 231, 183, 0.25);
+  border-radius: 3px;
+  color: #6ee7b7;
+  background: rgba(110, 231, 183, 0.08);
+}
+
+.cardLink {
+  font-size: 0.85rem;
+  color: #6ee7b7 !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+.cardLink:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
