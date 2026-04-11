@@ -55,7 +55,7 @@
 
   /* ===== 背景图 ===== */
   --sxq-bg-image: url('/img/white_mode.webp');
-  --sxq-bg-opacity: 0.55;
+  --sxq-bg-opacity: 0.85;  /* 最终值：调试中从 0.55 → 0.7 → 0.85，背景图需要更饱满 */
 
   /* ===== 玻璃卡片 ===== */
   --sxq-card-bg: rgba(255, 255, 255, 0.55);
@@ -70,9 +70,9 @@
   --sxq-text-muted: rgba(15, 23, 42, 0.55);
   --sxq-text-subtle: rgba(15, 23, 42, 0.35);
 
-  /* ===== 导航栏/页脚 ===== */
-  --sxq-nav-bg: rgba(255, 255, 255, 0.6);
-  --sxq-nav-border: rgba(15, 23, 42, 0.06);
+  /* ===== 导航栏/页脚 =====
+     最终方案：navbar 和 footer 改为 background: transparent / border: none / backdrop-filter: none，
+     通过 text-shadow 保证文字在背景图上可读。原计划中的 --sxq-nav-bg / --sxq-nav-border 已删除（死变量）。 */
 
   /* ===== 粒子 & 滚动条 ===== */
   --sxq-particle-color: rgba(15, 23, 42, 0.25);
@@ -97,9 +97,6 @@ html[data-theme='dark'] {
   --sxq-text-body: #e2e8f0;
   --sxq-text-muted: rgba(255, 255, 255, 0.55);
   --sxq-text-subtle: rgba(255, 255, 255, 0.35);
-
-  --sxq-nav-bg: rgba(10, 10, 25, 0.4);
-  --sxq-nav-border: rgba(255, 255, 255, 0.04);
 
   --sxq-particle-color: rgba(255, 255, 255, 0.3);
   --sxq-scrollbar-thumb: rgba(110, 231, 183, 0.2);
