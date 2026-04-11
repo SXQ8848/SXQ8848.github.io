@@ -1,0 +1,12 @@
+.bgLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--sxq-bg-image);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: var(--sxq-bg-opacity);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
