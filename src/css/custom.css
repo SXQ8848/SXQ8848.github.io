@@ -141,9 +141,9 @@ html {
 
 /* ---- Navbar ---- */
 .navbar {
-  backdrop-filter: blur(10px);
-  background: var(--sxq-nav-bg) !important;
-  border-bottom: 1px solid var(--sxq-nav-border) !important;
+  backdrop-filter: none !important;
+  background: transparent !important;
+  border-bottom: none !important;
   box-shadow: none !important;
   transition: var(--sxq-theme-transition);
 }
@@ -160,6 +160,7 @@ html {
 .navbar__link {
   font-weight: 500;
   transition: color 0.2s;
+  text-shadow: 0 1px 3px var(--sxq-mc-drop-shadow-strong);
 }
 
 .navbar__link:hover {
@@ -168,15 +169,16 @@ html {
 
 /* ---- Footer ---- */
 .footer--dark {
-  backdrop-filter: blur(10px);
-  background: var(--sxq-nav-bg) !important;
-  border-top: 1px solid var(--sxq-nav-border) !important;
+  backdrop-filter: none !important;
+  background: transparent !important;
+  border-top: none !important;
   box-shadow: none !important;
 }
 
 .footer__copyright {
   color: var(--sxq-text-subtle);
   font-size: 0.85rem;
+  text-shadow: 0 1px 3px var(--sxq-mc-drop-shadow-strong);
 }
 
 /* ---- Remove Section Dividers ---- */
