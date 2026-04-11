@@ -25,7 +25,7 @@
 
   /* Background image layer */
   --sxq-bg-image: url('/img/white_mode.webp');
-  --sxq-bg-opacity: 0.55;
+  --sxq-bg-opacity: 0.85;
 
   /* Glass cards */
   --sxq-card-bg: rgba(255, 255, 255, 0.55);
