@@ -44,11 +44,12 @@
   display: flex;
   align-items: baseline;
   gap: 12px;
-  background: rgba(15, 15, 30, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: var(--sxq-card-bg);
+  border: 1px solid var(--sxq-card-border);
   border-radius: 6px;
   padding: 12px 16px;
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 3px 0 var(--sxq-mc-drop-shadow);
+  transition: var(--sxq-theme-transition);
 }
 
 .year {
@@ -60,7 +61,7 @@
 
 .text {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--sxq-text-muted);
 }
 
 @media screen and (max-width: 600px) {

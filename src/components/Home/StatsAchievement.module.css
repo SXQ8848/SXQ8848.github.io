@@ -9,16 +9,17 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(15, 15, 30, 0.5);
+  background: var(--sxq-card-bg);
   border: 2px solid rgba(110, 231, 183, 0.15);
   border-radius: 6px;
   padding: 12px 20px;
   min-width: 200px;
   box-shadow:
-    inset 2px 2px 0 rgba(255, 255, 255, 0.05),
-    inset -2px -2px 0 rgba(0, 0, 0, 0.15),
-    4px 4px 0 rgba(0, 0, 0, 0.3);
+    inset 2px 2px 0 var(--sxq-mc-inset-light),
+    inset -2px -2px 0 var(--sxq-mc-inset-dark),
+    4px 4px 0 var(--sxq-mc-drop-shadow-strong);
   animation: achievementPop 0.5s ease both;
+  transition: var(--sxq-theme-transition);
 }
 
 @keyframes achievementPop {
@@ -39,7 +40,7 @@
 
 .achievementTitle {
   font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--sxq-text-subtle);
   text-transform: uppercase;
   letter-spacing: 1px;
   font-family: 'Courier New', monospace;
@@ -54,7 +55,7 @@
 
 .achievementLabel {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--sxq-text-muted);
   margin-top: 2px;
 }
 
