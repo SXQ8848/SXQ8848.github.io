@@ -6,16 +6,16 @@
 
 .card {
   position: relative;
-  background: rgba(15, 15, 30, 0.4);
+  background: var(--sxq-card-bg);
   backdrop-filter: blur(8px);
-  border: 2px solid rgba(255, 255, 255, 0.06);
+  border: 2px solid var(--sxq-card-border);
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, background-color 0.3s ease, border-color 0.3s ease;
   box-shadow:
-    inset 2px 2px 0 rgba(255, 255, 255, 0.06),
-    inset -2px -2px 0 rgba(0, 0, 0, 0.15),
-    4px 4px 0 rgba(0, 0, 0, 0.3);
+    inset 2px 2px 0 var(--sxq-mc-inset-light),
+    inset -2px -2px 0 var(--sxq-mc-inset-dark),
+    4px 4px 0 var(--sxq-mc-drop-shadow-strong);
 }
 
 .cardGlow {
@@ -35,15 +35,17 @@
 .cardTitle {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #f1f5f9;
+  color: var(--sxq-text-primary);
   margin: 0 0 0.5rem;
+  transition: color 0.3s ease;
 }
 
 .cardDesc {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--sxq-text-muted);
   line-height: 1.5;
   margin: 0 0 1rem;
+  transition: color 0.3s ease;
 }
 
 .tags {

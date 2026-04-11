@@ -13,13 +13,13 @@
   font-family: 'Courier New', monospace;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #e2e8f0;
+  color: var(--sxq-text-body);
   cursor: default;
   box-shadow:
-    inset 1px 1px 0 rgba(255, 255, 255, 0.1),
-    inset -1px -1px 0 rgba(0, 0, 0, 0.2),
-    3px 3px 0 rgba(0, 0, 0, 0.3);
-  transition: transform 0.15s;
+    inset 1px 1px 0 var(--sxq-mc-inset-light),
+    inset -1px -1px 0 var(--sxq-mc-inset-dark),
+    3px 3px 0 var(--sxq-mc-drop-shadow);
+  transition: transform 0.15s, color 0.3s;
   animation: slotBounce 0.4s ease both;
 }
 
@@ -42,16 +42,16 @@
   bottom: calc(100% + 10px);
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(15, 10, 30, 0.95);
+  background: var(--sxq-tooltip-bg);
   border: 2px solid;
   border-radius: 4px;
   padding: 8px 12px;
   min-width: 160px;
   z-index: 100;
   box-shadow:
-    inset 1px 1px 0 rgba(255, 255, 255, 0.08),
-    inset -1px -1px 0 rgba(0, 0, 0, 0.2),
-    4px 4px 0 rgba(0, 0, 0, 0.4);
+    inset 1px 1px 0 var(--sxq-mc-inset-light),
+    inset -1px -1px 0 var(--sxq-mc-inset-dark),
+    4px 4px 0 var(--sxq-mc-drop-shadow-strong);
   pointer-events: none;
 }
 
@@ -63,7 +63,7 @@
 
 .tooltipDesc {
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--sxq-tooltip-text);
   font-family: 'Courier New', monospace;
 }
 
