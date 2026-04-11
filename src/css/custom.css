@@ -4,7 +4,7 @@
  * work well for content-centric websites.
  */
 
-/* ---- Theme Colors (dark mode) ---- */
+/* ---- Infima primary (shared across both themes) ---- */
 :root {
   --ifm-color-primary: #6ee7b7;
   --ifm-color-primary-dark: #4ae0a6;
@@ -15,13 +15,100 @@
   --ifm-color-primary-lightest: #c8f7e4;
   --ifm-code-font-size: 95%;
   --ifm-font-family-base: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --ifm-background-color: transparent;
+
+  /* ===== SXQ semantic theme variables — LIGHT MODE values ===== */
+
+  /* Accent (shared) */
+  --sxq-accent: #6ee7b7;
+  --sxq-accent-2: #3b82f6;
+
+  /* Background image layer */
+  --sxq-bg-image: url('/img/white_mode.webp');
+  --sxq-bg-opacity: 0.55;
+
+  /* Glass cards */
+  --sxq-card-bg: rgba(255, 255, 255, 0.55);
+  --sxq-card-bg-strong: rgba(255, 255, 255, 0.75);
+  --sxq-card-border: rgba(15, 23, 42, 0.08);
+  --sxq-card-shadow: 0 4px 24px rgba(15, 23, 42, 0.08);
+  --sxq-glass-blur: blur(16px);
+
+  /* Text */
+  --sxq-text-primary: #0f172a;
+  --sxq-text-body: #1e293b;
+  --sxq-text-muted: rgba(15, 23, 42, 0.55);
+  --sxq-text-subtle: rgba(15, 23, 42, 0.35);
+
+  /* Navbar / footer */
+  --sxq-nav-bg: rgba(255, 255, 255, 0.6);
+  --sxq-nav-border: rgba(15, 23, 42, 0.06);
+
+  /* Minecraft pixel-art shadows (used by mc-theme, slot, card, achievement, social) */
+  --sxq-mc-inset-light: rgba(255, 255, 255, 0.9);
+  --sxq-mc-inset-dark: rgba(15, 23, 42, 0.12);
+  --sxq-mc-drop-shadow: rgba(15, 23, 42, 0.15);
+  --sxq-mc-drop-shadow-strong: rgba(15, 23, 42, 0.2);
+
+  /* Popups / tooltips (near-opaque) */
+  --sxq-tooltip-bg: rgba(255, 255, 255, 0.95);
+  --sxq-tooltip-text: rgba(15, 23, 42, 0.7);
+
+  /* Particles, scrollbar, selection */
+  --sxq-particle-color: rgba(15, 23, 42, 0.25);
+  --sxq-scrollbar-thumb: rgba(110, 231, 183, 0.45);
+  --sxq-scrollbar-thumb-hover: rgba(110, 231, 183, 0.65);
+  --sxq-selection-bg: rgba(110, 231, 183, 0.35);
+  --sxq-selection-text: #0f172a;
+
+  /* Hover tints */
+  --sxq-hover-tint: rgba(110, 231, 183, 0.1);
+
+  /* Theme transition */
+  --sxq-theme-transition: background-color 0.3s ease,
+                          border-color 0.3s ease,
+                          color 0.3s ease,
+                          box-shadow 0.3s ease;
+
+  /* Infima font color fallback */
+  --ifm-font-color-base: var(--sxq-text-body);
+  --ifm-heading-color: var(--sxq-text-primary);
+  --ifm-background-surface-color: var(--sxq-card-bg);
 }
 
+/* ===== DARK MODE overrides ===== */
 html[data-theme='dark'] {
-  --ifm-background-color: transparent;
-  --ifm-background-surface-color: rgba(15, 15, 30, 0.5);
-  --ifm-font-color-base: #e2e8f0;
-  --ifm-heading-color: #f1f5f9;
+  --sxq-bg-image: url('/img/to-the-moon.jpg');
+  --sxq-bg-opacity: 0.7;
+
+  --sxq-card-bg: rgba(15, 15, 30, 0.45);
+  --sxq-card-bg-strong: rgba(15, 15, 30, 0.6);
+  --sxq-card-border: rgba(255, 255, 255, 0.05);
+  --sxq-card-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+
+  --sxq-text-primary: #f1f5f9;
+  --sxq-text-body: #e2e8f0;
+  --sxq-text-muted: rgba(255, 255, 255, 0.55);
+  --sxq-text-subtle: rgba(255, 255, 255, 0.35);
+
+  --sxq-nav-bg: rgba(10, 10, 25, 0.4);
+  --sxq-nav-border: rgba(255, 255, 255, 0.04);
+
+  --sxq-mc-inset-light: rgba(255, 255, 255, 0.15);
+  --sxq-mc-inset-dark: rgba(0, 0, 0, 0.3);
+  --sxq-mc-drop-shadow: rgba(0, 0, 0, 0.3);
+  --sxq-mc-drop-shadow-strong: rgba(0, 0, 0, 0.4);
+
+  --sxq-tooltip-bg: rgba(15, 10, 30, 0.95);
+  --sxq-tooltip-text: rgba(255, 255, 255, 0.7);
+
+  --sxq-particle-color: rgba(255, 255, 255, 0.3);
+  --sxq-scrollbar-thumb: rgba(110, 231, 183, 0.2);
+  --sxq-scrollbar-thumb-hover: rgba(110, 231, 183, 0.35);
+  --sxq-selection-bg: rgba(110, 231, 183, 0.3);
+  --sxq-selection-text: #fff;
+
+  --sxq-hover-tint: rgba(110, 231, 183, 0.08);
 }
 
 /* ---- Code Highlight ---- */
