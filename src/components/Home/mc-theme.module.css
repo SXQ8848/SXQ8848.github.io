@@ -1,8 +1,8 @@
 .pixelBorder {
   box-shadow:
-    inset 2px 2px 0 rgba(255, 255, 255, 0.15),
-    inset -2px -2px 0 rgba(0, 0, 0, 0.3),
-    4px 4px 0 rgba(0, 0, 0, 0.4);
+    inset 2px 2px 0 var(--sxq-mc-inset-light),
+    inset -2px -2px 0 var(--sxq-mc-inset-dark),
+    4px 4px 0 var(--sxq-mc-drop-shadow-strong);
   image-rendering: pixelated;
 }
 

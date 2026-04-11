@@ -1,13 +1,14 @@
 .sectionTitle {
   font-size: 1.4rem;
   font-weight: 800;
-  color: #e2e8f0;
+  color: var(--sxq-text-primary);
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  transition: var(--sxq-theme-transition);
 }
 
 .emoji {
