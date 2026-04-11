@@ -315,8 +315,11 @@ blockquote {
   color: var(--sxq-selection-text);
 }
 
-/* ---- Theme transition ---- */
+/* ---- Theme transition ----
+   Note: .pagination-nav__link is intentionally NOT listed here — it has its
+   own transition declaration that combines theme-swap props with hover
+   transform animation. Adding it here would clobber the transform timing. */
 html, body, .navbar, .footer--dark, article, nav.menu,
-.pagination-nav__link, pre, table, blockquote {
+pre, table, blockquote {
   transition: var(--sxq-theme-transition);
 }
