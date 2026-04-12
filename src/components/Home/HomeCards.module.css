@@ -1,0 +1,98 @@
+.section {
+  padding: 2rem 1.5rem 4rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: var(--sxq-card-bg);
+  backdrop-filter: blur(8px);
+  border: 2px solid var(--sxq-card-border);
+  border-radius: 12px;
+  text-decoration: none !important;
+  border-bottom: 2px solid var(--sxq-card-border) !important;
+  box-shadow:
+    inset 2px 2px 0 var(--sxq-mc-inset-light),
+    inset -2px -2px 0 var(--sxq-mc-inset-dark),
+    4px 4px 0 var(--sxq-mc-drop-shadow-strong);
+  transition: var(--sxq-theme-transition), transform 0.2s ease, border-color 0.2s ease;
+  animation: cardIn 0.6s ease both;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(110, 231, 183, 0.4) !important;
+}
+
+.card:nth-child(1) { animation-delay: 0.05s; }
+.card:nth-child(2) { animation-delay: 0.15s; }
+.card:nth-child(3) { animation-delay: 0.25s; }
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cardIcon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  animation: cardIconPulse 2s ease-in-out infinite;
+}
+
+@keyframes cardIconPulse {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(110, 231, 183, 0.4)); }
+  50%      { filter: drop-shadow(0 0 12px rgba(110, 231, 183, 0.8)); }
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 0 0.25rem;
+  background: linear-gradient(135deg, #6ee7b7, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cardSubtitle {
+  font-size: 0.9rem;
+  color: var(--sxq-text-muted);
+  margin: 0 0 0.75rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+}
+
+.cardDesc {
+  font-size: 0.85rem;
+  color: var(--sxq-text-subtle);
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .cardIcon {
+    animation: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .section {
+    padding: 1.5rem 1rem 3rem;
+  }
+}
