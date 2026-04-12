@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Layout from '@theme/Layout';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './index.module.css';
-import SkillInventory from '../components/Home/SkillInventory';
-import ProjectCards from '../components/Home/ProjectCards';
-import StatsAchievement from '../components/Home/StatsAchievement';
-import Timeline from '../components/Home/Timeline';
-import RecentUpdates from '../components/Home/RecentUpdates';
-import SocialLinks from '../components/Home/SocialLinks';
+import HomeCards from '../components/Home/HomeCards';
 
 function Typewriter({ texts, speed = 80, pause = 2000 }) {
   const [display, setDisplay] = useState('');
@@ -73,7 +68,6 @@ export default function Home() {
   return (
     <Layout title="Home">
       <main>
-        {/* Hero Section */}
         <section className={styles.hero}>
           <Particles />
           <div className={styles.heroCard}>
@@ -103,29 +97,10 @@ export default function Home() {
             <p className={styles.description}>
               一个关于硬件、AI、编程和日常折腾的个人知识库。
             </p>
-            <div className={styles.actions}>
-              <a href="/docs/intro" className={styles.btnPrimary}>
-                Explore Docs
-              </a>
-              <a
-                href="https://github.com/SXQ8848"
-                className={styles.btnGhost}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-              </a>
-            </div>
           </div>
         </section>
 
-        {/* Scrolling Sections */}
-        <SkillInventory />
-        <ProjectCards />
-        <StatsAchievement />
-        <Timeline />
-        <RecentUpdates />
-        <SocialLinks />
+        <HomeCards />
       </main>
     </Layout>
   );
