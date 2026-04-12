@@ -39,7 +39,6 @@ module.exports = {
         src: 'img/favicon-64.png',
       },
       items: [
-        { to: '/docs/intro', label: 'Docs', position: 'left' },
         { href: 'https://github.com/SXQ8848/SXQ8848.github.io', label: 'GitHub', position: 'right' },
       ],
     },

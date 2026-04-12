@@ -1,6 +1,10 @@
 {
-  "label": "学习笔记",
-  "position": 4,
+  "label": "学习 & 积累",
+  "position": 1,
   "collapsible": true,
-  "collapsed": false
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "learning/intro"
+  }
 }

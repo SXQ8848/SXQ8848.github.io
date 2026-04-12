@@ -1,0 +1,10 @@
+{
+  "label": "生活 & 折腾",
+  "position": 2,
+  "collapsible": true,
+  "collapsed": false,
+  "link": {
+    "type": "doc",
+    "id": "life/intro"
+  }
+}
