@@ -39,6 +39,8 @@
   --sxq-text-body: #1e293b;
   --sxq-text-muted: rgba(15, 23, 42, 0.55);
   --sxq-text-subtle: rgba(15, 23, 42, 0.35);
+  --sxq-mark-bg: #fef08a;
+  --sxq-mark-text: #422006;
 
   /* Minecraft pixel-art shadows (used by mc-theme, slot, card, achievement, social) */
   --sxq-mc-inset-light: rgba(255, 255, 255, 0.9);
@@ -86,6 +88,8 @@ html[data-theme='dark'] {
   --sxq-text-body: #e2e8f0;
   --sxq-text-muted: rgba(255, 255, 255, 0.55);
   --sxq-text-subtle: rgba(255, 255, 255, 0.35);
+  --sxq-mark-bg: #854d0e;
+  --sxq-mark-text: #fef9c3;
 
   --sxq-mc-inset-light: rgba(255, 255, 255, 0.15);
   --sxq-mc-inset-dark: rgba(0, 0, 0, 0.3);
@@ -102,6 +106,16 @@ html[data-theme='dark'] {
   --sxq-selection-text: #fff;
 
   --sxq-hover-tint: rgba(110, 231, 183, 0.08);
+}
+
+/* ---- Article text highlighting ---- */
+.theme-doc-markdown mark {
+  background: var(--sxq-mark-bg);
+  color: var(--sxq-mark-text);
+  padding: 0 0.15em;
+  border-radius: 0.2em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 /* ---- Code Highlight ---- */

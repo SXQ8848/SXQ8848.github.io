@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="620" viewBox="0 0 1080 620" role="img" aria-labelledby="title desc"><title id="title">高速 CAN 电平｜0 是显性，1 是隐性</title><desc id="desc">5 V 收发器典型电平的理想化示意 · 非实测波形 · 不代表保证值</desc><g font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">
+<rect x="1" y="1" width="1078" height="618" rx="16" fill="#0f172a" stroke="#0f172a" stroke-width="2"/>
+<text x="36" y="49" font-size="30" fill="#e2e8f0" text-anchor="start" font-weight="700">高速 CAN 电平｜0 是显性，1 是隐性</text>
+<text x="36" y="83" font-size="20" fill="#a6b4c8" text-anchor="start" font-weight="400">5 V 收发器典型电平的理想化示意 · 非实测波形 · 不代表保证值</text>
+<text x="240" y="132" font-size="25" fill="#e2e8f0" text-anchor="middle" font-weight="700">1</text>
+<path d="M190,150 L190,535" stroke="#334155" stroke-width="1" fill="none" stroke-dasharray="4 5"/>
+<text x="340" y="132" font-size="25" fill="#86efac" text-anchor="middle" font-weight="700">0</text>
+<path d="M290,150 L290,535" stroke="#334155" stroke-width="1" fill="none" stroke-dasharray="4 5"/>
+<text x="440" y="132" font-size="25" fill="#86efac" text-anchor="middle" font-weight="700">0</text>
+<path d="M390,150 L390,535" stroke="#334155" stroke-width="1" fill="none" stroke-dasharray="4 5"/>
+<text x="540" y="132" font-size="25" fill="#e2e8f0" text-anchor="middle" font-weight="700">1</text>
+<path d="M490,150 L490,535" stroke="#334155" stroke-width="1" fill="none" stroke-dasharray="4 5"/>
+<text x="640" y="132" font-size="25" fill="#86efac" text-anchor="middle" font-weight="700">0</text>
+<path d="M590,150 L590,535" stroke="#334155" stroke-width="1" fill="none" stroke-dasharray="4 5"/>
+<text x="740" y="132" font-size="25" fill="#e2e8f0" text-anchor="middle" font-weight="700">1</text>
+<path d="M690,150 L690,535" stroke="#334155" stroke-width="1" fill="none" stroke-dasharray="4 5"/>
+<text x="840" y="132" font-size="25" fill="#e2e8f0" text-anchor="middle" font-weight="700">1</text>
+<path d="M790,150 L790,535" stroke="#334155" stroke-width="1" fill="none" stroke-dasharray="4 5"/>
+<text x="940" y="132" font-size="25" fill="#86efac" text-anchor="middle" font-weight="700">0</text>
+<path d="M890,150 L890,535" stroke="#334155" stroke-width="1" fill="none" stroke-dasharray="4 5"/>
+<text x="40" y="132" font-size="22" fill="#e2e8f0" text-anchor="start" font-weight="400">总线逻辑</text>
+<text x="40" y="223" font-size="20" fill="#67e8f9" text-anchor="start" font-weight="400">3.5 V</text>
+<text x="40" y="288" font-size="20" fill="#a6b4c8" text-anchor="start" font-weight="400">2.5 V</text>
+<text x="40" y="353" font-size="20" fill="#fdba74" text-anchor="start" font-weight="400">1.5 V</text>
+<path d="M180,280 L1010,280" stroke="#334155" stroke-width="2" fill="none" stroke-dasharray="6 6"/>
+<path d="M190,280 H290 V215 H390 V215 H490 V280 H590 V215 H690 V280 H790 V280 H890 V215 H990" fill="none" stroke="#67e8f9" stroke-width="5"/>
+<path d="M190,280 H290 V345 H390 V345 H490 V280 H590 V345 H690 V280 H790 V280 H890 V345 H990" fill="none" stroke="#fdba74" stroke-width="5"/>
+<text x="40" y="181" font-size="22" fill="#67e8f9" text-anchor="start" font-weight="400">CANH</text>
+<text x="40" y="388" font-size="22" fill="#fdba74" text-anchor="start" font-weight="400">CANL</text>
+<text x="40" y="445" font-size="22" fill="#86efac" text-anchor="start" font-weight="400">Vdiff</text>
+<text x="40" y="480" font-size="20" fill="#86efac" text-anchor="start" font-weight="400">约 2 V</text>
+<text x="40" y="535" font-size="20" fill="#a6b4c8" text-anchor="start" font-weight="400">约 0 V</text>
+<path d="M190,530 H290 V470 H390 V470 H490 V530 H590 V470 H690 V530 H790 V530 H890 V470 H990" fill="none" stroke="#86efac" stroke-width="5"/>
+<text x="190" y="580" font-size="22" fill="#a6b4c8" text-anchor="start" font-weight="400">隐性：两线接近同一电位</text>
+<text x="610" y="580" font-size="22" fill="#86efac" text-anchor="start" font-weight="400">显性：H 升高、L 降低</text>
+</g></svg>

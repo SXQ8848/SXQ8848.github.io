@@ -22,7 +22,10 @@ const sidebars = {
           label: '硬件原理',
           collapsible: true,
           collapsed: false,
-          items: ['learning/hardware/schematic-basics'],
+          items: [
+            'learning/hardware/schematic-basics',
+            'learning/hardware/Communication_protocol',
+          ],
         },
       ],
     },

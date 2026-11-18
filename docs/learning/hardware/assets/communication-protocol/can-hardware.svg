@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="890" viewBox="0 0 1080 890" role="img" aria-labelledby="title desc"><title id="title">CAN 节点硬件｜3.3 V MCU + TCAN1042HV</title><desc id="desc">SOIC-8 引脚编号 · 经典 500 kbit/s 教学连接 · 非隔离节点示意</desc><g font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">
+<rect x="1" y="1" width="1078" height="888" rx="16" fill="#0f172a" stroke="#0f172a" stroke-width="2"/>
+<text x="36" y="49" font-size="30" fill="#e2e8f0" text-anchor="start" font-weight="700">CAN 节点硬件｜3.3 V MCU + TCAN1042HV</text>
+<text x="36" y="83" font-size="20" fill="#a6b4c8" text-anchor="start" font-weight="400">SOIC-8 引脚编号 · 经典 500 kbit/s 教学连接 · 非隔离节点示意</text>
+<rect x="35" y="205" width="195" height="260" rx="10" fill="#18263c" stroke="#334155" stroke-width="2"/>
+<text x="133" y="243" font-size="27" fill="#93c5fd" text-anchor="middle" font-weight="700">MCU</text>
+<text x="133" y="277" font-size="19" fill="#a6b4c8" text-anchor="middle" font-weight="400">内置 CAN 控制器</text>
+<rect x="370" y="205" width="260" height="260" rx="10" fill="#18263c" stroke="#334155" stroke-width="2"/>
+<text x="500" y="242" font-size="24" fill="#86efac" text-anchor="middle" font-weight="700">TCAN1042HV</text>
+<text x="210" y="318" font-size="19" fill="#93c5fd" text-anchor="end" font-weight="400">CAN_TX</text>
+<text x="385" y="318" font-size="20" fill="#e2e8f0" text-anchor="start" font-weight="400">1 TXD</text>
+<path d="M230,310 L370,310" stroke="#93c5fd" stroke-width="3" fill="none" />
+<path d="M370,310 L359.4690092573155,315.75310646325045" stroke="#93c5fd" stroke-width="3" fill="none" />
+<path d="M370,310 L359.4690092573155,304.24689353674955" stroke="#93c5fd" stroke-width="3" fill="none" />
+<text x="210" y="364" font-size="19" fill="#93c5fd" text-anchor="end" font-weight="400">CAN_RX</text>
+<text x="385" y="364" font-size="20" fill="#e2e8f0" text-anchor="start" font-weight="400">4 RXD</text>
+<path d="M370,355 L230,355" stroke="#93c5fd" stroke-width="3" fill="none" />
+<path d="M230,355 L240.53099074268448,349.24689353674955" stroke="#93c5fd" stroke-width="3" fill="none" />
+<path d="M230,355 L240.53099074268448,360.75310646325045" stroke="#93c5fd" stroke-width="3" fill="none" />
+<text x="210" y="412" font-size="20" fill="#93c5fd" text-anchor="end" font-weight="400">GPIO</text>
+<text x="385" y="412" font-size="20" fill="#e2e8f0" text-anchor="start" font-weight="400">8 STB</text>
+<path d="M230,405 L370,405" stroke="#93c5fd" stroke-width="3" fill="none" />
+<path d="M370,405 L359.4690092573155,410.75310646325045" stroke="#93c5fd" stroke-width="3" fill="none" />
+<path d="M370,405 L359.4690092573155,399.24689353674955" stroke="#93c5fd" stroke-width="3" fill="none" />
+<text x="500" y="439" font-size="20" fill="#a6b4c8" text-anchor="middle" font-weight="400">低：正常 / 高：待机</text>
+<path d="M435,125 L435,205" stroke="#fdba74" stroke-width="3" fill="none" />
+<text x="435" y="116" font-size="21" fill="#fdba74" text-anchor="middle" font-weight="400">5 V → 3 VCC</text>
+<path d="M565,160 L565,205" stroke="#93c5fd" stroke-width="3" fill="none" />
+<text x="565" y="150" font-size="21" fill="#93c5fd" text-anchor="middle" font-weight="400">3.3 V → 5 VIO</text>
+<path d="M435,175 L330,175" stroke="#fdba74" stroke-width="3" fill="none" />
+<circle cx="435" cy="175" r="5" fill="#fdba74"/>
+<path d="M330,175 L330,192.5" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M316,192.5 L344,192.5" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M316,202.5 L344,202.5" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M330,202.5 L330,220" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M330,220 L330,232" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M316,232 L344,232" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M321,239 L339,239" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M326,246 L334,246" stroke="#94a3b8" stroke-width="3" fill="none" />
+<text x="268" y="169" font-size="18" fill="#a6b4c8" text-anchor="middle" font-weight="400">100 nF</text>
+<path d="M565,182 L680,182" stroke="#93c5fd" stroke-width="3" fill="none" />
+<circle cx="565" cy="182" r="5" fill="#93c5fd"/>
+<path d="M680,182 L680,198.5" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M666,198.5 L694,198.5" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M666,208.5 L694,208.5" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M680,208.5 L680,225" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M680,225 L680,237" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M666,237 L694,237" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M671,244 L689,244" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M676,251 L684,251" stroke="#94a3b8" stroke-width="3" fill="none" />
+<text x="750" y="196" font-size="18" fill="#a6b4c8" text-anchor="middle" font-weight="400">100 nF</text>
+<text x="615" y="293" font-size="20" fill="#67e8f9" text-anchor="end" font-weight="400">7 CANH</text>
+<text x="615" y="353" font-size="20" fill="#fdba74" text-anchor="end" font-weight="400">6 CANL</text>
+<path d="M630,285 L1010,285" stroke="#67e8f9" stroke-width="3" fill="none" />
+<path d="M630,345 L1010,345" stroke="#fdba74" stroke-width="3" fill="none" />
+<rect x="715" y="257" width="115" height="115" rx="5" fill="#18263c" stroke="#94a3b8" stroke-width="2"/>
+<path d="M715,285 L830,285" stroke="#67e8f9" stroke-width="3" fill="none" />
+<path d="M715,345 L830,345" stroke="#fdba74" stroke-width="3" fill="none" />
+<text x="772" y="320" font-size="22" fill="#e2e8f0" text-anchor="middle" font-weight="400">CMC</text>
+<text x="772" y="399" font-size="18" fill="#a6b4c8" text-anchor="middle" font-weight="400">可选 / 可旁路</text>
+<rect x="980" y="245" width="65" height="215" rx="5" fill="#263449" stroke="#94a3b8" stroke-width="2"/>
+<text x="1012" y="233" font-size="22" fill="#e2e8f0" text-anchor="middle" font-weight="400">接口</text>
+<text x="1012" y="292" font-size="22" fill="#67e8f9" text-anchor="middle" font-weight="400">H</text>
+<text x="1012" y="352" font-size="22" fill="#fdba74" text-anchor="middle" font-weight="400">L</text>
+<text x="1012" y="440" font-size="17" fill="#a6b4c8" text-anchor="middle" font-weight="400">GND</text>
+<path d="M885,285 L885,385" stroke="#67e8f9" stroke-width="3" fill="none" />
+<circle cx="885" cy="285" r="5" fill="#67e8f9"/>
+<path d="M940,345 L940,385" stroke="#fdba74" stroke-width="3" fill="none" />
+<circle cx="940" cy="345" r="5" fill="#fdba74"/>
+<rect x="860" y="385" width="102" height="53" rx="4" fill="#18263c" stroke="#fda4af" stroke-width="2"/>
+<text x="911" y="419" font-size="18" fill="#fda4af" text-anchor="middle" font-weight="400">双路 TVS</text>
+<path d="M911,438 L911,450" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M897,450 L925,450" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M902,457 L920,457" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M907,464 L915,464" stroke="#94a3b8" stroke-width="3" fill="none" />
+<text x="500" y="490" font-size="20" fill="#a6b4c8" text-anchor="middle" font-weight="400">2 GND</text>
+<path d="M500,465 L500,510" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M500,510 L500,522" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M486,522 L514,522" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M491,529 L509,529" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M496,536 L504,536" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M133,465 L133,510" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M133,510 L500,510" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M1010,460 L1010,510" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M1010,510 L500,510" stroke="#94a3b8" stroke-width="3" fill="none" />
+<text x="36" y="565" font-size="22" fill="#a6b4c8" text-anchor="start" font-weight="400">去耦靠近电源脚；TVS 靠近接口；STB 复位状态需要确定。</text>
+<rect x="35" y="600" width="465" height="230" rx="10" fill="#18263c" stroke="#334155" stroke-width="2"/>
+<rect x="520" y="600" width="525" height="230" rx="10" fill="#18263c" stroke="#334155" stroke-width="2"/>
+<text x="58" y="636" font-size="23" fill="#67e8f9" text-anchor="start" font-weight="700">端点方案 A：普通终端</text>
+<text x="545" y="636" font-size="23" fill="#67e8f9" text-anchor="start" font-weight="700">端点方案 B：分裂终端</text>
+<path d="M85,690 L85,780" stroke="#67e8f9" stroke-width="3" fill="none" />
+<path d="M430,690 L430,780" stroke="#fdba74" stroke-width="3" fill="none" />
+<path d="M85,730 L170,730" stroke="#94a3b8" stroke-width="3" fill="none" />
+<rect x="170" y="718" width="175" height="24" rx="0" fill="#0f172a" stroke="#fdba74" stroke-width="2"/>
+<path d="M345,730 L430,730" stroke="#94a3b8" stroke-width="3" fill="none" />
+<text x="258" y="700" font-size="23" fill="#fdba74" text-anchor="middle" font-weight="400">120 Ω</text>
+<text x="85" y="681" font-size="23" fill="#67e8f9" text-anchor="middle" font-weight="400">H</text>
+<text x="430" y="681" font-size="23" fill="#fdba74" text-anchor="middle" font-weight="400">L</text>
+<path d="M565,705 L615,705" stroke="#67e8f9" stroke-width="3" fill="none" />
+<rect x="615" y="693" width="125" height="24" rx="0" fill="#0f172a" stroke="#fdba74" stroke-width="2"/>
+<path d="M740,705 L800,705" stroke="#94a3b8" stroke-width="3" fill="none" />
+<rect x="800" y="693" width="125" height="24" rx="0" fill="#0f172a" stroke="#fdba74" stroke-width="2"/>
+<path d="M925,705 L1005,705" stroke="#fdba74" stroke-width="3" fill="none" />
+<text x="678" y="680" font-size="22" fill="#fdba74" text-anchor="middle" font-weight="400">60 Ω</text>
+<text x="863" y="680" font-size="22" fill="#fdba74" text-anchor="middle" font-weight="400">60 Ω</text>
+<text x="556" y="711" font-size="22" fill="#67e8f9" text-anchor="end" font-weight="400">H</text>
+<text x="1014" y="711" font-size="22" fill="#fdba74" text-anchor="start" font-weight="400">L</text>
+<circle cx="770" cy="705" r="5" fill="#94a3b8"/>
+<path d="M770,705 L770,730" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M756,730 L784,730" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M756,740 L784,740" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M770,740 L770,765" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M770,765 L770,777" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M756,777 L784,777" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M761,784 L779,784" stroke="#94a3b8" stroke-width="3" fill="none" />
+<path d="M766,791 L774,791" stroke="#94a3b8" stroke-width="3" fill="none" />
+<text x="795" y="756" font-size="19" fill="#a6b4c8" text-anchor="start" font-weight="400">4.7 nF 示例</text>
+<text x="540" y="863" font-size="22" fill="#fdba74" text-anchor="middle" font-weight="400">两个物理端点各选一种；中间节点不装终端。</text>
+</g></svg>

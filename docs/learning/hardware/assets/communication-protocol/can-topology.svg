@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="560" viewBox="0 0 1080 560" role="img" aria-labelledby="title desc"><title id="title">CAN 总线拓扑｜一条主干，两个终端</title><desc id="desc">高速双线 CAN · 节点可主动发送 · CANH 与 CANL 使用双绞线</desc><g font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">
+<rect x="1" y="1" width="1078" height="558" rx="16" fill="#0f172a" stroke="#0f172a" stroke-width="2"/>
+<text x="36" y="49" font-size="30" fill="#e2e8f0" text-anchor="start" font-weight="700">CAN 总线拓扑｜一条主干，两个终端</text>
+<text x="36" y="83" font-size="20" fill="#a6b4c8" text-anchor="start" font-weight="400">高速双线 CAN · 节点可主动发送 · CANH 与 CANL 使用双绞线</text>
+<rect x="60" y="120" width="180" height="170" rx="10" fill="#18263c" stroke="#334155" stroke-width="2"/>
+<text x="150" y="153" font-size="24" fill="#e2e8f0" text-anchor="middle" font-weight="700">节点 1</text>
+<text x="150" y="194" font-size="20" fill="#93c5fd" text-anchor="middle" font-weight="400">MCU + 控制器</text>
+<text x="150" y="248" font-size="21" fill="#86efac" text-anchor="middle" font-weight="400">CAN 收发器</text>
+<path d="M130,290 L130,350" stroke="#67e8f9" stroke-width="3" fill="none" />
+<path d="M170,290 L170,410" stroke="#fdba74" stroke-width="3" fill="none" />
+<circle cx="130" cy="350" r="5" fill="#67e8f9"/>
+<circle cx="170" cy="410" r="5" fill="#fdba74"/>
+<rect x="300" y="120" width="180" height="170" rx="10" fill="#18263c" stroke="#334155" stroke-width="2"/>
+<text x="390" y="153" font-size="24" fill="#e2e8f0" text-anchor="middle" font-weight="700">节点 2</text>
+<text x="390" y="194" font-size="20" fill="#93c5fd" text-anchor="middle" font-weight="400">MCU + 控制器</text>
+<text x="390" y="248" font-size="21" fill="#86efac" text-anchor="middle" font-weight="400">CAN 收发器</text>
+<path d="M370,290 L370,350" stroke="#67e8f9" stroke-width="3" fill="none" />
+<path d="M410,290 L410,410" stroke="#fdba74" stroke-width="3" fill="none" />
+<circle cx="370" cy="350" r="5" fill="#67e8f9"/>
+<circle cx="410" cy="410" r="5" fill="#fdba74"/>
+<rect x="540" y="120" width="180" height="170" rx="10" fill="#18263c" stroke="#334155" stroke-width="2"/>
+<text x="630" y="153" font-size="24" fill="#e2e8f0" text-anchor="middle" font-weight="700">节点 3</text>
+<text x="630" y="194" font-size="20" fill="#93c5fd" text-anchor="middle" font-weight="400">MCU + 控制器</text>
+<text x="630" y="248" font-size="21" fill="#86efac" text-anchor="middle" font-weight="400">CAN 收发器</text>
+<path d="M610,290 L610,350" stroke="#67e8f9" stroke-width="3" fill="none" />
+<path d="M650,290 L650,410" stroke="#fdba74" stroke-width="3" fill="none" />
+<circle cx="610" cy="350" r="5" fill="#67e8f9"/>
+<circle cx="650" cy="410" r="5" fill="#fdba74"/>
+<rect x="780" y="120" width="180" height="170" rx="10" fill="#18263c" stroke="#334155" stroke-width="2"/>
+<text x="870" y="153" font-size="24" fill="#e2e8f0" text-anchor="middle" font-weight="700">节点 4</text>
+<text x="870" y="194" font-size="20" fill="#93c5fd" text-anchor="middle" font-weight="400">MCU + 控制器</text>
+<text x="870" y="248" font-size="21" fill="#86efac" text-anchor="middle" font-weight="400">CAN 收发器</text>
+<path d="M850,290 L850,350" stroke="#67e8f9" stroke-width="3" fill="none" />
+<path d="M890,290 L890,410" stroke="#fdba74" stroke-width="3" fill="none" />
+<circle cx="850" cy="350" r="5" fill="#67e8f9"/>
+<circle cx="890" cy="410" r="5" fill="#fdba74"/>
+<path d="M65,350 L995,350" stroke="#67e8f9" stroke-width="4" fill="none" />
+<path d="M65,410 L995,410" stroke="#fdba74" stroke-width="4" fill="none" />
+<path d="M65,350 L65,362" stroke="#94a3b8" stroke-width="3" fill="none" />
+<rect x="55" y="362" width="20" height="36" rx="0" fill="#0f172a" stroke="#fdba74" stroke-width="2"/>
+<path d="M65,398 L65,410" stroke="#94a3b8" stroke-width="3" fill="none" />
+<text x="83" y="387" font-size="20" fill="#fdba74" text-anchor="start" font-weight="400">120 Ω</text>
+<path d="M995,350 L995,362" stroke="#94a3b8" stroke-width="3" fill="none" />
+<rect x="985" y="362" width="20" height="36" rx="0" fill="#0f172a" stroke="#fdba74" stroke-width="2"/>
+<path d="M995,398 L995,410" stroke="#94a3b8" stroke-width="3" fill="none" />
+<text x="1013" y="387" font-size="20" fill="#fdba74" text-anchor="start" font-weight="400"></text>
+<text x="965" y="449" font-size="20" fill="#fdba74" text-anchor="middle" font-weight="400">120 Ω</text>
+<text x="40" y="330" font-size="20" fill="#67e8f9" text-anchor="start" font-weight="400">CANH</text>
+<text x="40" y="447" font-size="20" fill="#fdba74" text-anchor="start" font-weight="400">CANL</text>
+<text x="515" y="323" font-size="20" fill="#a6b4c8" text-anchor="start" font-weight="400">短支线</text>
+<text x="540" y="449" font-size="22" fill="#e2e8f0" text-anchor="middle" font-weight="400">线型主干（非无源星形）</text>
+<path d="M100,480 L960,480" stroke="#94a3b8" stroke-width="2" fill="none" stroke-dasharray="7 5"/>
+<text x="540" y="516" font-size="21" fill="#a6b4c8" text-anchor="middle" font-weight="400">参考地：按系统接地方案连接；隔离节点另行规划</text>
+</g></svg>
