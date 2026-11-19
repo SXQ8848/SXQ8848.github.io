@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="800" viewBox="0 0 1080 800" role="img" aria-labelledby="title desc"><title id="title">I²S 双麦连接｜共用时钟，分别占左、右时隙</title><desc id="desc">示例：ICS-43434 + MCU；本型号为 24 位 I²S、每帧 64 个 SCK</desc><rect width="1080" height="800" rx="16" fill="#0f172a"/><g font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">
+<text x="36" y="49" font-size="30" fill="#e2e8f0" text-anchor="start" font-weight="700">I²S 双麦连接｜共用时钟，分别占左、右时隙</text>
+<text x="36" y="83" font-size="19" fill="#a6b4c8" text-anchor="start" font-weight="400">示例：ICS-43434 + MCU；本型号为 24 位 I²S、每帧 64 个 SCK</text>
+<rect x="40" y="230" width="245" height="290" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+<text x="162" y="275" font-size="30" fill="#93c5fd" text-anchor="middle" font-weight="700">MCU</text>
+<text x="162" y="307" font-size="23" fill="#a6b4c8" text-anchor="middle" font-weight="400">I²S 接收</text>
+<rect x="665" y="145" width="330" height="215" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+<text x="830" y="182" font-size="25" fill="#e2e8f0" text-anchor="middle" font-weight="700">ICS-43434</text>
+<text x="830" y="214" font-size="21" fill="#86efac" text-anchor="middle" font-weight="400">MIC A：LR 接 GND</text>
+<path d="M450,250 L665,250" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<circle cx="450" cy="250" r="5" fill="#67e8f9"/>
+<text x="680" y="257" font-size="21" fill="#67e8f9" text-anchor="start" font-weight="400">4 SCK</text>
+<path d="M500,290 L665,290" fill="none" stroke="#fdba74" stroke-width="3"/>
+<circle cx="500" cy="290" r="5" fill="#fdba74"/>
+<text x="680" y="297" font-size="21" fill="#fdba74" text-anchor="start" font-weight="400">1 WS</text>
+<path d="M550,330 L665,330" fill="none" stroke="#86efac" stroke-width="3"/>
+<circle cx="550" cy="330" r="5" fill="#86efac"/>
+<text x="680" y="337" font-size="21" fill="#86efac" text-anchor="start" font-weight="400">6 SD</text>
+<text x="975" y="342" font-size="21" fill="#a6b4c8" text-anchor="end" font-weight="400">2 LR = GND</text>
+<path d="M930,107 L930,145" fill="none" stroke="#fdba74" stroke-width="3"/>
+<text x="922" y="95" font-size="20" fill="#fdba74" text-anchor="end" font-weight="400">5 VDD → 3.3 V</text>
+<path d="M930,107 L1030,107" fill="none" stroke="#fdba74" stroke-width="3"/>
+<circle cx="930" cy="107" r="5" fill="#fdba74"/>
+<path d="M1030,107 L1030,126" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1017,126 L1043,126" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1017,135 L1043,135" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1030,135 L1030,147" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1030,147 L1030,159" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1015,159 L1045,159" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1020,167 L1040,167" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1025,175 L1035,175" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<text x="1007" y="121" font-size="18" fill="#a6b4c8" text-anchor="end" font-weight="400">100 nF</text>
+<path d="M760,360 L760,374" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M760,374 L760,386" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M745,386 L775,386" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M750,394 L770,394" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M755,402 L765,402" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<text x="735" y="387" font-size="20" fill="#a6b4c8" text-anchor="end" font-weight="400">3 GND</text>
+<rect x="665" y="445" width="330" height="215" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+<text x="830" y="482" font-size="25" fill="#e2e8f0" text-anchor="middle" font-weight="700">ICS-43434</text>
+<text x="830" y="514" font-size="21" fill="#fdba74" text-anchor="middle" font-weight="400">MIC B：LR 接 VDD</text>
+<path d="M450,550 L665,550" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<circle cx="450" cy="550" r="5" fill="#67e8f9"/>
+<text x="680" y="557" font-size="21" fill="#67e8f9" text-anchor="start" font-weight="400">4 SCK</text>
+<path d="M500,590 L665,590" fill="none" stroke="#fdba74" stroke-width="3"/>
+<circle cx="500" cy="590" r="5" fill="#fdba74"/>
+<text x="680" y="597" font-size="21" fill="#fdba74" text-anchor="start" font-weight="400">1 WS</text>
+<path d="M550,630 L665,630" fill="none" stroke="#86efac" stroke-width="3"/>
+<circle cx="550" cy="630" r="5" fill="#86efac"/>
+<text x="680" y="637" font-size="21" fill="#86efac" text-anchor="start" font-weight="400">6 SD</text>
+<text x="975" y="642" font-size="21" fill="#a6b4c8" text-anchor="end" font-weight="400">2 LR = VDD</text>
+<path d="M930,407 L930,445" fill="none" stroke="#fdba74" stroke-width="3"/>
+<text x="922" y="395" font-size="20" fill="#fdba74" text-anchor="end" font-weight="400">5 VDD → 3.3 V</text>
+<path d="M930,407 L1030,407" fill="none" stroke="#fdba74" stroke-width="3"/>
+<circle cx="930" cy="407" r="5" fill="#fdba74"/>
+<path d="M1030,407 L1030,426" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1017,426 L1043,426" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1017,435 L1043,435" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1030,435 L1030,447" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1030,447 L1030,459" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1015,459 L1045,459" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1020,467 L1040,467" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1025,475 L1035,475" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<text x="1007" y="421" font-size="18" fill="#a6b4c8" text-anchor="end" font-weight="400">100 nF</text>
+<path d="M760,660 L760,674" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M760,674 L760,686" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M745,686 L775,686" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M750,694 L770,694" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M755,702 L765,702" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<text x="735" y="687" font-size="20" fill="#a6b4c8" text-anchor="end" font-weight="400">3 GND</text>
+<path d="M450,250 L450,550" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<path d="M285,350 L450,350" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<path d="M450,350 L440.3465918192059,355.2736809246462" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<path d="M450,350 L440.3465918192059,344.7263190753538" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<circle cx="450" cy="350" r="5" fill="#67e8f9"/>
+<text x="265" y="340" font-size="20" fill="#67e8f9" text-anchor="end" font-weight="400">SCK 输出</text>
+<path d="M500,290 L500,590" fill="none" stroke="#fdba74" stroke-width="3"/>
+<path d="M285,395 L500,395" fill="none" stroke="#fdba74" stroke-width="3"/>
+<path d="M500,395 L490.3465918192059,400.2736809246462" fill="none" stroke="#fdba74" stroke-width="3"/>
+<path d="M500,395 L490.3465918192059,389.7263190753538" fill="none" stroke="#fdba74" stroke-width="3"/>
+<circle cx="500" cy="395" r="5" fill="#fdba74"/>
+<text x="265" y="385" font-size="20" fill="#fdba74" text-anchor="end" font-weight="400">WS 输出</text>
+<path d="M550,330 L550,630" fill="none" stroke="#86efac" stroke-width="3"/>
+<path d="M550,440 L285,440" fill="none" stroke="#86efac" stroke-width="3"/>
+<path d="M285,440 L294.6534081807941,434.7263190753538" fill="none" stroke="#86efac" stroke-width="3"/>
+<path d="M285,440 L294.6534081807941,445.2736809246462" fill="none" stroke="#86efac" stroke-width="3"/>
+<circle cx="550" cy="440" r="5" fill="#86efac"/>
+<text x="265" y="430" font-size="20" fill="#86efac" text-anchor="end" font-weight="400">数据输入</text>
+<path d="M550,630 L550,666" fill="none" stroke="#86efac" stroke-width="3"/>
+<rect x="538" y="666" width="24" height="34" rx="0" fill="none" stroke="#a6b4c8" stroke-width="2"/>
+<path d="M550,700 L550,706" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M550,706 L550,718" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M535,718 L565,718" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M540,726 L560,726" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M545,734 L555,734" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<text x="524" y="690" font-size="20" fill="#a6b4c8" text-anchor="end" font-weight="400">100 kΩ</text>
+<rect x="36" y="750" width="1008" height="32" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+<text x="540" y="773" font-size="21" fill="#e2e8f0" text-anchor="middle" font-weight="400">每只麦克风各自去耦；仅本例所示三态输出器件允许 SD 共线。</text>
+</g></svg>

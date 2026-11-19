@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="610" viewBox="0 0 1080 610" role="img" aria-labelledby="title desc"><title id="title">I²S 系统连接｜时钟方向与音频方向分别判断</title><desc id="desc">示例：MCU 提供时钟，Codec 同时承担录音与播放</desc><rect width="1080" height="610" rx="16" fill="#0f172a"/><g font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">
+<text x="36" y="49" font-size="30" fill="#e2e8f0" text-anchor="start" font-weight="700">I²S 系统连接｜时钟方向与音频方向分别判断</text>
+<text x="36" y="83" font-size="19" fill="#a6b4c8" text-anchor="start" font-weight="400">示例：MCU 提供时钟，Codec 同时承担录音与播放</text>
+<rect x="55" y="150" width="260" height="350" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+<rect x="745" y="150" width="280" height="350" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+<text x="185" y="194" font-size="30" fill="#93c5fd" text-anchor="middle" font-weight="700">MCU / DSP</text>
+<text x="185" y="227" font-size="23" fill="#a6b4c8" text-anchor="middle" font-weight="400">时钟控制端</text>
+<text x="885" y="194" font-size="30" fill="#86efac" text-anchor="middle" font-weight="700">音频 Codec</text>
+<text x="885" y="227" font-size="23" fill="#a6b4c8" text-anchor="middle" font-weight="400">ADC + DAC</text>
+<path d="M315,270 L745,270" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<path d="M745,270 L735.3465918192059,275.2736809246462" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<path d="M745,270 L735.3465918192059,264.7263190753538" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<text x="530" y="258" font-size="21" fill="#67e8f9" text-anchor="middle" font-weight="400">BCLK / SCK</text>
+<path d="M315,320 L745,320" fill="none" stroke="#fdba74" stroke-width="3"/>
+<path d="M745,320 L735.3465918192059,325.2736809246462" fill="none" stroke="#fdba74" stroke-width="3"/>
+<path d="M745,320 L735.3465918192059,314.7263190753538" fill="none" stroke="#fdba74" stroke-width="3"/>
+<text x="530" y="308" font-size="21" fill="#fdba74" text-anchor="middle" font-weight="400">WS / LRCLK</text>
+<path d="M315,370 L745,370" fill="none" stroke="#86efac" stroke-width="3"/>
+<path d="M745,370 L735.3465918192059,375.2736809246462" fill="none" stroke="#86efac" stroke-width="3"/>
+<path d="M745,370 L735.3465918192059,364.7263190753538" fill="none" stroke="#86efac" stroke-width="3"/>
+<text x="530" y="358" font-size="21" fill="#86efac" text-anchor="middle" font-weight="400">播放：MCU TX → Codec DIN</text>
+<path d="M745,420 L315,420" fill="none" stroke="#93c5fd" stroke-width="3"/>
+<path d="M315,420 L324.6534081807941,414.7263190753538" fill="none" stroke="#93c5fd" stroke-width="3"/>
+<path d="M315,420 L324.6534081807941,425.2736809246462" fill="none" stroke="#93c5fd" stroke-width="3"/>
+<text x="530" y="408" font-size="21" fill="#93c5fd" text-anchor="middle" font-weight="400">录音：MCU RX ← Codec DOUT</text>
+<path d="M315,470 L745,470" fill="none" stroke="#f9a8d4" stroke-width="3" stroke-dasharray="7 5"/>
+<text x="530" y="460" font-size="20" fill="#f9a8d4" text-anchor="middle" font-weight="400">MCLK：仅在器件需要时连接</text>
+<rect x="55" y="530" width="970" height="48" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+<text x="540" y="561" font-size="22" fill="#e2e8f0" text-anchor="middle" font-weight="400">I²C / SPI 可独立配置 Codec；I²S 音频数据本身不包含寄存器命令。</text>
+</g></svg>

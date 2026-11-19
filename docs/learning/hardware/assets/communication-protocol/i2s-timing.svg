@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="650" viewBox="0 0 1080 650" role="img" aria-labelledby="title desc"><title id="title">I²S 位时序｜WS 先变，下一拍才是 MSB</title><desc id="desc">8 位字 / 8 位槽的教学示例；下降沿更新，上升沿采样</desc><rect width="1080" height="650" rx="16" fill="#0f172a"/><g font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">
+<text x="36" y="49" font-size="30" fill="#e2e8f0" text-anchor="start" font-weight="700">I²S 位时序｜WS 先变，下一拍才是 MSB</text>
+<text x="36" y="83" font-size="19" fill="#a6b4c8" text-anchor="start" font-weight="400">8 位字 / 8 位槽的教学示例；下降沿更新，上升沿采样</text>
+<text x="40" y="168" font-size="24" fill="#67e8f9" text-anchor="start" font-weight="400">BCLK</text>
+<path d="M200,180 L230,180 L230,140 L260,140 L260,180 L290,180 L290,140 L320,140 L320,180 L350,180 L350,140 L380,140 L380,180 L410,180 L410,140 L440,140 L440,180 L470,180 L470,140 L500,140 L500,180 L530,180 L530,140 L560,140 L560,180 L590,180 L590,140 L620,140 L620,180 L650,180 L650,140 L680,140 L680,180 L710,180 L710,140 L740,140 L740,180 L770,180 L770,140 L800,140 L800,180 L830,180 L830,140 L860,140 L860,180 L890,180 L890,140 L920,140 L920,180 L950,180 L950,140 L980,140 L980,180 L1010,180 L1010,140 L1040,140 L1040,180" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<text x="40" y="255" font-size="24" fill="#fdba74" text-anchor="start" font-weight="400">WS</text>
+<path d="M200,230 H260 V270 H740 V230 H1040" fill="none" stroke="#fdba74" stroke-width="3"/>
+<text x="500" y="250" font-size="22" fill="#fdba74" text-anchor="middle" font-weight="400">左声道选择</text>
+<text x="900" y="215" font-size="22" fill="#fdba74" text-anchor="middle" font-weight="400">右声道选择</text>
+<path d="M260,125 L260,500" fill="none" stroke="#a6b4c8" stroke-width="3" stroke-dasharray="7 5"/>
+<path d="M740,125 L740,500" fill="none" stroke="#a6b4c8" stroke-width="3" stroke-dasharray="7 5"/>
+<text x="35" y="342" font-size="24" fill="#86efac" text-anchor="start" font-weight="400">I²S SD</text>
+<text x="35" y="438" font-size="24" fill="#93c5fd" text-anchor="start" font-weight="400">左对齐</text>
+<rect x="200" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#a6b4c8" stroke-width="2"/>
+<text x="230" y="340" font-size="19" fill="#a6b4c8" text-anchor="middle" font-weight="400">…</text>
+<rect x="260" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#a6b4c8" stroke-width="2"/>
+<text x="290" y="340" font-size="19" fill="#a6b4c8" text-anchor="middle" font-weight="400">前 LSB</text>
+<rect x="320" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#86efac" stroke-width="2"/>
+<text x="350" y="340" font-size="19" fill="#86efac" text-anchor="middle" font-weight="400">L7</text>
+<rect x="380" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#86efac" stroke-width="2"/>
+<text x="410" y="340" font-size="19" fill="#86efac" text-anchor="middle" font-weight="400">L6</text>
+<rect x="440" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#86efac" stroke-width="2"/>
+<text x="470" y="340" font-size="19" fill="#86efac" text-anchor="middle" font-weight="400">L5</text>
+<rect x="500" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#86efac" stroke-width="2"/>
+<text x="530" y="340" font-size="19" fill="#86efac" text-anchor="middle" font-weight="400">L4</text>
+<rect x="560" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#86efac" stroke-width="2"/>
+<text x="590" y="340" font-size="19" fill="#86efac" text-anchor="middle" font-weight="400">L3</text>
+<rect x="620" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#86efac" stroke-width="2"/>
+<text x="650" y="340" font-size="19" fill="#86efac" text-anchor="middle" font-weight="400">L2</text>
+<rect x="680" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#86efac" stroke-width="2"/>
+<text x="710" y="340" font-size="19" fill="#86efac" text-anchor="middle" font-weight="400">L1</text>
+<rect x="740" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#86efac" stroke-width="2"/>
+<text x="770" y="340" font-size="19" fill="#86efac" text-anchor="middle" font-weight="400">L0</text>
+<rect x="800" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#fdba74" stroke-width="2"/>
+<text x="830" y="340" font-size="19" fill="#fdba74" text-anchor="middle" font-weight="400">R7</text>
+<rect x="860" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#fdba74" stroke-width="2"/>
+<text x="890" y="340" font-size="19" fill="#fdba74" text-anchor="middle" font-weight="400">R6</text>
+<rect x="920" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#fdba74" stroke-width="2"/>
+<text x="950" y="340" font-size="19" fill="#fdba74" text-anchor="middle" font-weight="400">R5</text>
+<rect x="980" y="310" width="60" height="45" rx="0" fill="#1e293b" stroke="#fdba74" stroke-width="2"/>
+<text x="1010" y="340" font-size="19" fill="#fdba74" text-anchor="middle" font-weight="400">…</text>
+<rect x="200" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#a6b4c8" stroke-width="2"/>
+<text x="230" y="436" font-size="19" fill="#a6b4c8" text-anchor="middle" font-weight="400">前 LSB</text>
+<rect x="260" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#93c5fd" stroke-width="2"/>
+<text x="290" y="436" font-size="19" fill="#93c5fd" text-anchor="middle" font-weight="400">L7</text>
+<rect x="320" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#93c5fd" stroke-width="2"/>
+<text x="350" y="436" font-size="19" fill="#93c5fd" text-anchor="middle" font-weight="400">L6</text>
+<rect x="380" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#93c5fd" stroke-width="2"/>
+<text x="410" y="436" font-size="19" fill="#93c5fd" text-anchor="middle" font-weight="400">L5</text>
+<rect x="440" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#93c5fd" stroke-width="2"/>
+<text x="470" y="436" font-size="19" fill="#93c5fd" text-anchor="middle" font-weight="400">L4</text>
+<rect x="500" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#93c5fd" stroke-width="2"/>
+<text x="530" y="436" font-size="19" fill="#93c5fd" text-anchor="middle" font-weight="400">L3</text>
+<rect x="560" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#93c5fd" stroke-width="2"/>
+<text x="590" y="436" font-size="19" fill="#93c5fd" text-anchor="middle" font-weight="400">L2</text>
+<rect x="620" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#93c5fd" stroke-width="2"/>
+<text x="650" y="436" font-size="19" fill="#93c5fd" text-anchor="middle" font-weight="400">L1</text>
+<rect x="680" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#93c5fd" stroke-width="2"/>
+<text x="710" y="436" font-size="19" fill="#93c5fd" text-anchor="middle" font-weight="400">L0</text>
+<rect x="740" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#fdba74" stroke-width="2"/>
+<text x="770" y="436" font-size="19" fill="#fdba74" text-anchor="middle" font-weight="400">R7</text>
+<rect x="800" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#fdba74" stroke-width="2"/>
+<text x="830" y="436" font-size="19" fill="#fdba74" text-anchor="middle" font-weight="400">R6</text>
+<rect x="860" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#fdba74" stroke-width="2"/>
+<text x="890" y="436" font-size="19" fill="#fdba74" text-anchor="middle" font-weight="400">R5</text>
+<rect x="920" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#fdba74" stroke-width="2"/>
+<text x="950" y="436" font-size="19" fill="#fdba74" text-anchor="middle" font-weight="400">R4</text>
+<rect x="980" y="406" width="60" height="45" rx="0" fill="#1e293b" stroke="#fdba74" stroke-width="2"/>
+<text x="1010" y="436" font-size="19" fill="#fdba74" text-anchor="middle" font-weight="400">…</text>
+<path d="M260,380 L320,380" fill="none" stroke="#f9a8d4" stroke-width="3"/>
+<path d="M320,380 L310.3465918192059,385.2736809246462" fill="none" stroke="#f9a8d4" stroke-width="3"/>
+<path d="M320,380 L310.3465918192059,374.7263190753538" fill="none" stroke="#f9a8d4" stroke-width="3"/>
+<text x="360" y="387" font-size="22" fill="#f9a8d4" text-anchor="start" font-weight="400">延迟 1 个 BCLK</text>
+<circle cx="350" cy="310" r="5" fill="#e2e8f0"/>
+<circle cx="410" cy="310" r="5" fill="#e2e8f0"/>
+<circle cx="470" cy="310" r="5" fill="#e2e8f0"/>
+<circle cx="530" cy="310" r="5" fill="#e2e8f0"/>
+<circle cx="590" cy="310" r="5" fill="#e2e8f0"/>
+<circle cx="650" cy="310" r="5" fill="#e2e8f0"/>
+<circle cx="710" cy="310" r="5" fill="#e2e8f0"/>
+<circle cx="770" cy="310" r="5" fill="#e2e8f0"/>
+<circle cx="830" cy="310" r="5" fill="#e2e8f0"/>
+<circle cx="890" cy="310" r="5" fill="#e2e8f0"/>
+<text x="540" y="494" font-size="21" fill="#a6b4c8" text-anchor="middle" font-weight="400">圆点：I²S SD 的上升沿采样位置；L7 / R7 为 MSB。</text>
+<rect x="36" y="530" width="1008" height="86" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+<text x="58" y="563" font-size="23" fill="#e2e8f0" text-anchor="start" font-weight="400">WS 翻转后的第一拍仍可承载前一声道 LSB。</text>
+<text x="58" y="596" font-size="22" fill="#86efac" text-anchor="start" font-weight="400">一拍延迟是对齐关系，并不是每个字前都额外塞入一个空闲位。</text>
+</g></svg>

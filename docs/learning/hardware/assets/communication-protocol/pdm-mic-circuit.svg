@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="800" viewBox="0 0 1080 800" role="img" aria-labelledby="title desc"><title id="title">PDM 双麦连接｜共用 CLK，按相反半周期输出</title><desc id="desc">示例：MP34DT06J + 支持双边沿分离的主控；全部 I/O 按 3.3 V 兼容连接</desc><rect width="1080" height="800" rx="16" fill="#0f172a"/><g font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">
+<text x="36" y="49" font-size="30" fill="#e2e8f0" text-anchor="start" font-weight="700">PDM 双麦连接｜共用 CLK，按相反半周期输出</text>
+<text x="36" y="83" font-size="19" fill="#a6b4c8" text-anchor="start" font-weight="400">示例：MP34DT06J + 支持双边沿分离的主控；全部 I/O 按 3.3 V 兼容连接</text>
+<rect x="40" y="230" width="245" height="290" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+<text x="162" y="275" font-size="30" fill="#93c5fd" text-anchor="middle" font-weight="700">MCU</text>
+<text x="162" y="307" font-size="23" fill="#a6b4c8" text-anchor="middle" font-weight="400">PDM 接收与转换</text>
+<rect x="665" y="145" width="330" height="215" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+<text x="830" y="182" font-size="25" fill="#e2e8f0" text-anchor="middle" font-weight="700">MP34DT06J</text>
+<text x="830" y="214" font-size="21" fill="#86efac" text-anchor="middle" font-weight="400">MIC A：LR 接 GND</text>
+<path d="M470,250 L665,250" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<circle cx="470" cy="250" r="5" fill="#67e8f9"/>
+<text x="680" y="257" font-size="21" fill="#67e8f9" text-anchor="start" font-weight="400">3 CLK</text>
+<path d="M550,290 L665,290" fill="none" stroke="#86efac" stroke-width="3"/>
+<circle cx="550" cy="290" r="5" fill="#86efac"/>
+<text x="680" y="297" font-size="21" fill="#86efac" text-anchor="start" font-weight="400">4 DOUT</text>
+<text x="975" y="342" font-size="21" fill="#a6b4c8" text-anchor="end" font-weight="400">2 LR = GND</text>
+<path d="M930,107 L930,145" fill="none" stroke="#fdba74" stroke-width="3"/>
+<text x="922" y="95" font-size="20" fill="#fdba74" text-anchor="end" font-weight="400">1 VDD → 3.3 V</text>
+<path d="M930,107 L1050,107" fill="none" stroke="#fdba74" stroke-width="3"/>
+<circle cx="930" cy="107" r="5" fill="#fdba74"/>
+<path d="M1014,107 L1014,126" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1001,126 L1027,126" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1001,135 L1027,135" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1014,135 L1014,147" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1014,147 L1014,159" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M999,159 L1029,159" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1004,167 L1024,167" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1009,175 L1019,175" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<text x="991" y="121" font-size="18" fill="#a6b4c8" text-anchor="end" font-weight="400"></text>
+<path d="M1050,107 L1050,126" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1037,126 L1063,126" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1037,135 L1063,135" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1050,135 L1050,147" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1050,147 L1050,159" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1035,159 L1065,159" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1040,167 L1060,167" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1045,175 L1055,175" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<text x="1027" y="121" font-size="18" fill="#a6b4c8" text-anchor="end" font-weight="400"></text>
+<circle cx="1014" cy="107" r="5" fill="#fdba74"/>
+<text x="920" y="135" font-size="18" fill="#a6b4c8" text-anchor="end" font-weight="400">100 nF ∥ 1 μF</text>
+<path d="M760,360 L760,374" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M760,374 L760,386" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M745,386 L775,386" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M750,394 L770,394" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M755,402 L765,402" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<text x="735" y="387" font-size="20" fill="#a6b4c8" text-anchor="end" font-weight="400">5 接地环</text>
+<rect x="665" y="445" width="330" height="215" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+<text x="830" y="482" font-size="25" fill="#e2e8f0" text-anchor="middle" font-weight="700">MP34DT06J</text>
+<text x="830" y="514" font-size="21" fill="#fdba74" text-anchor="middle" font-weight="400">MIC B：LR 接 VDD</text>
+<path d="M470,550 L665,550" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<circle cx="470" cy="550" r="5" fill="#67e8f9"/>
+<text x="680" y="557" font-size="21" fill="#67e8f9" text-anchor="start" font-weight="400">3 CLK</text>
+<path d="M550,590 L665,590" fill="none" stroke="#86efac" stroke-width="3"/>
+<circle cx="550" cy="590" r="5" fill="#86efac"/>
+<text x="680" y="597" font-size="21" fill="#86efac" text-anchor="start" font-weight="400">4 DOUT</text>
+<text x="975" y="642" font-size="21" fill="#a6b4c8" text-anchor="end" font-weight="400">2 LR = VDD</text>
+<path d="M930,407 L930,445" fill="none" stroke="#fdba74" stroke-width="3"/>
+<text x="922" y="395" font-size="20" fill="#fdba74" text-anchor="end" font-weight="400">1 VDD → 3.3 V</text>
+<path d="M930,407 L1050,407" fill="none" stroke="#fdba74" stroke-width="3"/>
+<circle cx="930" cy="407" r="5" fill="#fdba74"/>
+<path d="M1014,407 L1014,426" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1001,426 L1027,426" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1001,435 L1027,435" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1014,435 L1014,447" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1014,447 L1014,459" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M999,459 L1029,459" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1004,467 L1024,467" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1009,475 L1019,475" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<text x="991" y="421" font-size="18" fill="#a6b4c8" text-anchor="end" font-weight="400"></text>
+<path d="M1050,407 L1050,426" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1037,426 L1063,426" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1037,435 L1063,435" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1050,435 L1050,447" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1050,447 L1050,459" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1035,459 L1065,459" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1040,467 L1060,467" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M1045,475 L1055,475" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<text x="1027" y="421" font-size="18" fill="#a6b4c8" text-anchor="end" font-weight="400"></text>
+<circle cx="1014" cy="407" r="5" fill="#fdba74"/>
+<text x="920" y="435" font-size="18" fill="#a6b4c8" text-anchor="end" font-weight="400">100 nF ∥ 1 μF</text>
+<path d="M760,660 L760,674" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M760,674 L760,686" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M745,686 L775,686" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M750,694 L770,694" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<path d="M755,702 L765,702" fill="none" stroke="#a6b4c8" stroke-width="3"/>
+<text x="735" y="687" font-size="20" fill="#a6b4c8" text-anchor="end" font-weight="400">5 接地环</text>
+<path d="M470,250 L470,550" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<path d="M285,350 L470,350" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<path d="M470,350 L460.3465918192059,355.2736809246462" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<path d="M470,350 L460.3465918192059,344.7263190753538" fill="none" stroke="#67e8f9" stroke-width="3"/>
+<circle cx="470" cy="350" r="5" fill="#67e8f9"/>
+<text x="265" y="340" font-size="20" fill="#67e8f9" text-anchor="end" font-weight="400">CLK 输出</text>
+<path d="M550,290 L550,590" fill="none" stroke="#86efac" stroke-width="3"/>
+<path d="M550,435 L285,435" fill="none" stroke="#86efac" stroke-width="3"/>
+<path d="M285,435 L294.6534081807941,429.7263190753538" fill="none" stroke="#86efac" stroke-width="3"/>
+<path d="M285,435 L294.6534081807941,440.2736809246462" fill="none" stroke="#86efac" stroke-width="3"/>
+<circle cx="550" cy="435" r="5" fill="#86efac"/>
+<text x="265" y="425" font-size="20" fill="#86efac" text-anchor="end" font-weight="400">数据输入</text>
+<rect x="36" y="750" width="1008" height="32" rx="8" fill="#1e293b" stroke="#475569" stroke-width="2"/>
+<text x="540" y="773" font-size="21" fill="#e2e8f0" text-anchor="middle" font-weight="400">每只麦克风各自去耦；两只 LR 必须相反；没有动态 WS 信号。</text>
+</g></svg>
