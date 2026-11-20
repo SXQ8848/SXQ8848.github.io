@@ -4,15 +4,15 @@
  * work well for content-centric websites.
  */
 
-/* ---- Infima primary (shared across both themes) ---- */
+/* ---- Infima primary (readable on light surfaces) ---- */
 :root {
-  --ifm-color-primary: #6ee7b7;
-  --ifm-color-primary-dark: #4ae0a6;
-  --ifm-color-primary-darker: #38dc9b;
-  --ifm-color-primary-darkest: #21c483;
-  --ifm-color-primary-light: #92eec8;
-  --ifm-color-primary-lighter: #a4f1d3;
-  --ifm-color-primary-lightest: #c8f7e4;
+  --ifm-color-primary: #115e59;
+  --ifm-color-primary-dark: #0f5550;
+  --ifm-color-primary-darker: #0e504c;
+  --ifm-color-primary-darkest: #0c423e;
+  --ifm-color-primary-light: #136762;
+  --ifm-color-primary-lighter: #146c66;
+  --ifm-color-primary-lightest: #167a74;
   --ifm-code-font-size: 95%;
   --ifm-font-family-base: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --ifm-background-color: transparent;
@@ -76,6 +76,14 @@
 
 /* ===== DARK MODE overrides ===== */
 html[data-theme='dark'] {
+  --ifm-color-primary: #6ee7b7;
+  --ifm-color-primary-dark: #4ae0a6;
+  --ifm-color-primary-darker: #38dc9b;
+  --ifm-color-primary-darkest: #21c483;
+  --ifm-color-primary-light: #92eec8;
+  --ifm-color-primary-lighter: #a4f1d3;
+  --ifm-color-primary-lightest: #c8f7e4;
+
   --sxq-bg-image: url('/img/to-the-moon.jpg');
   --sxq-bg-opacity: 0.7;
 
@@ -232,12 +240,12 @@ nav.menu {
 
 .menu__link:hover {
   background: var(--sxq-hover-tint);
-  color: var(--sxq-accent);
+  color: var(--ifm-color-primary);
 }
 
 .menu__link--active {
   background: var(--sxq-hover-tint) !important;
-  color: var(--sxq-accent) !important;
+  color: var(--ifm-color-primary) !important;
   font-weight: 600;
 }
 
@@ -262,14 +270,54 @@ nav.menu {
 
 /* ---- Links ---- */
 .main-wrapper a:not(.navbar__link):not(.menu__link):not(.pagination-nav__link) {
-  color: var(--sxq-accent);
+  color: var(--ifm-color-primary);
   text-decoration: none;
   border-bottom: 1px solid rgba(110, 231, 183, 0.2);
   transition: border-color 0.2s;
 }
 
 .main-wrapper a:not(.navbar__link):not(.menu__link):not(.pagination-nav__link):hover {
-  border-bottom-color: var(--sxq-accent);
+  border-bottom-color: var(--ifm-color-primary);
+}
+
+/* Keep the light-mode article outline readable over the sky background. */
+html[data-theme='light'] .theme-doc-toc-desktop,
+html[data-theme='light'] .theme-doc-toc-mobile {
+  background: rgba(248, 250, 252, 0.96);
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme='light'] .theme-doc-toc-desktop {
+  padding: 0.5rem 0;
+}
+
+html[data-theme='light'] .theme-doc-toc-desktop > .table-of-contents {
+  border-left: 0;
+}
+
+html[data-theme='light'] .main-wrapper .table-of-contents a.table-of-contents__link {
+  color: #334155;
+  border-bottom: 0;
+  border-radius: 4px;
+  padding: 0.2rem 0.35rem;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+html[data-theme='light'] .main-wrapper .table-of-contents a.table-of-contents__link:hover,
+html[data-theme='light'] .main-wrapper .table-of-contents a.table-of-contents__link--active {
+  color: #115e59;
+  background-color: #dceee8;
+}
+
+html[data-theme='light'] .main-wrapper .table-of-contents a.table-of-contents__link--active {
+  font-weight: 700;
+}
+
+html[data-theme='light'] .main-wrapper .table-of-contents a.table-of-contents__link:focus-visible {
+  outline: 2px solid #115e59;
+  outline-offset: 2px;
 }
 
 /* ---- Pagination Nav ---- */
