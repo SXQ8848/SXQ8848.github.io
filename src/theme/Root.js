@@ -3,6 +3,7 @@ import React from 'react';
 import Head from '@docusaurus/Head';
 import MusicPlayer from '../components/MusicPlayer';
 import RainbowTrail from '../components/RainbowTrail';
+import WhalePet from '../components/WhalePet';
 import styles from './Root.module.css';
 
 // ==================== 根组件 ====================
@@ -21,6 +22,7 @@ export default function Root({ children }) {
       <RainbowTrail />
       <MusicPlayer />
       {children}
+      <WhalePet />
     </>
   );
 }
