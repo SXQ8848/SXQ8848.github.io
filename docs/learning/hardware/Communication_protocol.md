@@ -84,7 +84,7 @@ SPI最大通信速率由主设备和从设备的硬件性能决定，通常在<m
 
 #### 1.3 常见SPI硬件电路
 
- ![在这里插入图片描述](https://i-blog.csdnimg.cn/blog_migrate/615065dcaea82a5f84f27d95a520cb37.png) 
+![SPI Flash 硬件电路：片选、写保护、暂停引脚上拉及电源去耦](./assets/communication-protocol/spi-flash-circuit.png)
 
 以GD25Q127CSIG为例：
 

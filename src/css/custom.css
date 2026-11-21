@@ -203,6 +203,36 @@ html {
 }
 
 /* ---- Doc Pages: Glass Card Style ---- */
+/* Every article heading stays larger than body text, including on phones. */
+.theme-doc-markdown :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.theme-doc-markdown h1 {
+  font-size: clamp(2.25rem, 1.75rem + 1.5vw, 3rem);
+}
+
+.theme-doc-markdown h2 {
+  font-size: clamp(1.875rem, 1.5rem + 1vw, 2.25rem);
+}
+
+.theme-doc-markdown h3 {
+  font-size: clamp(1.5rem, 1.25rem + 0.75vw, 1.75rem);
+}
+
+.theme-doc-markdown h4 {
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+}
+
+.theme-doc-markdown h5 {
+  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.25rem);
+}
+
+.theme-doc-markdown h6 {
+  font-size: clamp(1.0625rem, 1rem + 0.2vw, 1.125rem);
+}
+
 .theme-doc-markdown,
 [class*='docMainContainer'] {
   background: transparent !important;
