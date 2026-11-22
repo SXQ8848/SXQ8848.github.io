@@ -1,4 +1,5 @@
 import React, { useEffect, useId, useRef, useState } from 'react';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 
 const STORAGE_KEY = 'sxq-whale-pet-v1';
@@ -12,7 +13,7 @@ const MESSAGES = [
 ];
 
 function petSize(width, minimized) {
-  return minimized ? 48 : width <= 600 ? 96 : 128;
+  return minimized ? 48 : width <= 600 ? 128 : 176;
 }
 
 function bounds(viewport, minimized) {
@@ -33,50 +34,14 @@ function constrain(point, viewport, minimized) {
   };
 }
 
-// Original chibi illustration inspired by DeepSeek's blue whale.
+// Reference and creator credits are recorded alongside the local artwork.
 function Whale({ still = false }) {
-  const id = useId().replace(/:/g, '');
+  const imageUrl = useBaseUrl('/img/whale-pet/deepseek-girl.webp');
   return (
-    <svg className={`${styles.whale} ${still ? styles.still : ''}`} viewBox="0 0 160 140" aria-hidden="true" focusable="false">
-      <defs>
-        <linearGradient id={`${id}-blue`} x1="0" y1="0" x2="0.8" y2="1">
-          <stop offset="0" stopColor="#80d8ff" />
-          <stop offset="0.48" stopColor="#527fff" />
-          <stop offset="1" stopColor="#354bdb" />
-        </linearGradient>
-        <linearGradient id={`${id}-belly`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#fff" />
-          <stop offset="1" stopColor="#d4edff" />
-        </linearGradient>
-      </defs>
-      <ellipse className={styles.shadow} cx="78" cy="133" rx="42" ry="4" fill="#244caf" opacity="0.17" />
-      <g className={styles.swimmer}>
-        <g className={styles.tail}>
-          <path d="M108 88C124 83 132 72 129 61C118 61 110 53 109 43C121 40 130 46 133 52C137 43 147 40 156 44C155 56 146 64 139 64C144 81 133 99 114 102Z" fill={`url(#${id}-blue)`} stroke="#3459c9" strokeWidth="2" strokeLinejoin="round" />
-          <path d="M133 54L136 64" fill="none" stroke="#b5e7ff" strokeWidth="3" strokeLinecap="round" />
-        </g>
-        <path d="M117 72C127 96 113 119 85 124C56 131 22 118 16 96C8 70 25 46 50 40C79 32 108 46 117 72Z" fill={`url(#${id}-blue)`} stroke="#3459c9" strokeWidth="2" />
-        <path d="M20 98C37 108 56 104 71 105C91 106 108 100 119 90C119 107 104 120 85 124C55 130 29 118 20 98Z" fill={`url(#${id}-belly)`} />
-        <path d="M31 60C40 49 56 45 68 46" fill="none" stroke="#d7f5ff" strokeWidth="5" strokeLinecap="round" opacity="0.7" />
-        <path className={styles.fin} d="M83 103C88 104 99 111 95 118C91 124 78 117 75 109" fill="#527dff" stroke="#3459c9" strokeWidth="2" strokeLinecap="round" />
-        <g className={styles.eyes}>
-          <ellipse cx="43" cy="84" rx="7" ry="9" fill="#17295e" />
-          <ellipse cx="85" cy="81" rx="7" ry="9" fill="#17295e" />
-          <circle cx="41" cy="81" r="2.6" fill="white" />
-          <circle cx="83" cy="78" r="2.6" fill="white" />
-          <circle cx="46" cy="87" r="1.2" fill="#97d8ff" />
-          <circle cx="88" cy="84" r="1.2" fill="#97d8ff" />
-        </g>
-        <ellipse cx="29" cy="96" rx="8" ry="4.5" fill="#ffb3d0" opacity="0.85" />
-        <ellipse cx="100" cy="92" rx="8" ry="4.5" fill="#ffb3d0" opacity="0.85" />
-        <path d="M56 96Q64 105 73 94" fill="none" stroke="#20396d" strokeWidth="2.8" strokeLinecap="round" />
-        <g className={styles.splash} fill="#8cdcff" stroke="#fff" strokeWidth="1.4">
-          <path d="M66 29C58 24 58 16 62 13C69 14 71 22 66 29Z" />
-          <path d="M73 30C73 21 79 17 83 20C83 26 79 30 73 30Z" />
-          <circle cx="55" cy="29" r="2.4" />
-        </g>
-      </g>
-    </svg>
+    <span className={`${styles.whale} ${still ? styles.still : ''}`} aria-hidden="true">
+      <span className={styles.shadow} />
+      <img className={styles.characterImage} src={imageUrl} alt="" draggable={false} width="458" height="528" />
+    </span>
   );
 }
 
@@ -215,7 +180,7 @@ export default function WhalePet() {
 
   return (
     <aside
-      aria-label="DeepSeek 小鲸桌宠"
+      aria-label="DeepSeek 鲸鱼娘桌宠"
       className={`${styles.pet} ${paused ? styles.paused : ''} ${dragging ? styles.dragging : ''}`}
       style={{ left: position.x, top: position.y, width: size, height: size }}
     >
@@ -229,6 +194,7 @@ export default function WhalePet() {
             <div className={styles.bubble} style={{ width: bubbleWidth, left: bubbleLeft, ...(bubbleAbove ? { bottom: size + 10 } : { top: size + 10 }) }}>
               <div className={styles.bubbleHeader}><span>小鲸 <small>陪你探索</small></span><button onClick={() => setMessage(null)} aria-label="关闭小鲸气泡">×</button></div>
               <p id={greetingId} role="status" aria-live="polite">{message}</p>
+              <a className={styles.credit} href="https://genderswapai.com/zh-CN/ai-gijinka/deepseek/chibi" target="_blank" rel="noopener noreferrer" title="角色：上善无形 / ZipZipPipe；参考图整理：TreapGoGo">形象来源 · 上善无形 / ZipZipPipe</a>
             </div>
           )}
           <button
@@ -246,7 +212,7 @@ export default function WhalePet() {
             onLostPointerCapture={finishDrag}
           >
             <span className={`${styles.characterArt} ${happy ? styles.happy : ''}`}><Whale /></span>
-            <span className={styles.name}>DeepSeek 小鲸</span>
+            <span className={styles.name}>DeepSeek 鲸鱼娘</span>
           </button>
           <button className={styles.minimize} onClick={toggleMinimized} aria-label="收起小鲸桌宠" title="收起小鲸">−</button>
         </>

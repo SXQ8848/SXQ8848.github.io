@@ -44,10 +44,24 @@
 
 .whale {
   display: block;
+  position: relative;
   width: 100%;
   height: 100%;
   overflow: visible;
   pointer-events: none;
+}
+
+.characterImage {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  animation: sway 3.6s ease-in-out infinite;
+  transform-origin: 50% 95%;
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
 
 .name {
@@ -150,22 +164,32 @@
   line-height: 1.7;
 }
 
-.swimmer { animation: swim 3.6s ease-in-out infinite; }
-.shadow { animation: shadow 3.6s ease-in-out infinite; transform-origin: center; transform-box: fill-box; }
-.tail { animation: wag 2.8s ease-in-out infinite; transform-origin: 12% 85%; transform-box: fill-box; }
-.fin { animation: fin 2.8s ease-in-out infinite; transform-origin: 15% 15%; transform-box: fill-box; }
-.eyes { animation: blink 5.5s infinite; transform-origin: center; transform-box: fill-box; }
-.splash { animation: splash 3.6s ease-in-out infinite; }
+.credit {
+  display: block;
+  margin-top: 8px;
+  color: var(--pet-ink);
+  font-size: 10px;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.shadow {
+  position: absolute;
+  bottom: 0;
+  left: 30%;
+  width: 40%;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(36, 76, 175, 0.18);
+  animation: shadow 3.6s ease-in-out infinite;
+}
 .happy { animation: happy 0.7s ease-in-out; }
 .still *, .paused *, .dragging * { animation-play-state: paused !important; }
 .dragging .character { cursor: grabbing; }
 
-@keyframes swim { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes sway { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-4px) rotate(1deg); } }
 @keyframes shadow { 0%, 100% { transform: scaleX(1); opacity: 0.17; } 50% { transform: scaleX(0.85); opacity: 0.1; } }
-@keyframes wag { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(7deg); } }
-@keyframes fin { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-12deg); } }
-@keyframes blink { 0%, 44%, 48%, 100% { transform: scaleY(1); } 46% { transform: scaleY(0.1); } }
-@keyframes splash { 0%, 100% { opacity: 0.7; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
 @keyframes happy { 0%, 100% { transform: rotate(0); } 35% { transform: translateY(-12px) rotate(-8deg); } 65% { transform: translateY(-5px) rotate(6deg); } }
 @keyframes bubbleIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
